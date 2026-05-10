@@ -3,1000 +3,1477 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reblooma — Insurance-Covered Massage Therapy in the Bay Area</title>
-<meta name="description" content="Reblooma connects patients to licensed massage therapists with integrated insurance reimbursement. Get a telehealth prescription, book a session, and let us handle the superbill. Launching in the Bay Area.">
-<meta property="og:title" content="Massage therapy is healthcare. We make it billable.">
-<meta property="og:description" content="Reblooma is a healthcare marketplace connecting patients to licensed massage therapists with insurance infrastructure built in. Join the waitlist.">
-<meta name="theme-color" content="#152035">
+<title>Reblooma — FSA/HSA Payments for Wellness Providers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --plum: #1A1035;
-    --violet: #2E1F5E;
-    --purple: #4A357A;
-    --lavender: #7B64B0;
-    --lilac: #AA93D4;
-    --pale-lav: #D4C8ED;
-    --fog-lav: #EDE8F6;
-    --ink: #0B1222;
-    --navy: #152035;
-    --navy-mid: #1E3050;
-    --steel: #2E4A70;
-    --sky: #4A6E96;
-    --mist: #8AAEC8;
-    --pale-blue: #C2D8EA;
-    --fog: #EBF1F7;
-    --amber: #C4622A;
-    --ember: #D4784A;
-    --glow: #E09060;
-    --peach: #EDB888;
-    --pale-amb: #F5DCC8;
-    --white: #FDFCFF;
-    --bd: rgba(30,48,80,0.13);
-  }
+/* ─────────────────────────────
+   RESET & ROOT
+───────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  /* Brand palette */
+  --teal:     #3498db;
+  --purple:   #8e44ad;
+  --charcoal: #2c3e50;
+  --bg:       #ecf0f1;
+  --white:    #ffffff;
+  --coral:    #f5b7b1;
+  --coral-d:  #e8786f;
+  --gold:     #fef5d9;
+  --gold-d:   #c9a227;
+  --sage:     #d5f5e3;
+  --sage-d:   #1a7a4a;
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* Gradient — the brand signature */
+  --grad:        linear-gradient(135deg, #3498db 0%, #8e44ad 100%);
+  --grad-soft:   linear-gradient(135deg, rgba(52,152,219,.12) 0%, rgba(142,68,173,.12) 100%);
+  --grad-text:   linear-gradient(135deg, #3498db, #8e44ad);
 
-  html { scroll-behavior: smooth; }
+  /* Typography */
+  --serif: 'Lora', Georgia, serif;
+  --sans:  'Outfit', sans-serif;
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--fog);
-    color: var(--navy);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+  /* Shadows */
+  --sh-sm: 0 1px 4px rgba(44,62,80,.07), 0 4px 16px rgba(44,62,80,.04);
+  --sh-md: 0 4px 24px rgba(44,62,80,.1);
+  --sh-lg: 0 12px 48px rgba(44,62,80,.14);
 
-  /* ── TRICOLOR BAR ── */
-  .tribar {
-    display: flex;
-    height: 4px;
-    width: 100%;
-  }
-  .tribar span { flex: 1; display: block; }
-  .tribar .t1 { background: var(--lavender); }
-  .tribar .t2 { background: var(--navy-mid); }
-  .tribar .t3 { background: var(--ember); }
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--charcoal);
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--serif);font-weight:300;letter-spacing:-.02em;line-height:1.1;}
+img{display:block;max-width:100%;}
 
-  /* ── NAV ── */
-  nav {
-    background: var(--navy);
-    border-bottom: 0.5px solid rgba(170,147,212,0.15);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .nav-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo {
-    font-family: 'Fraunces', serif;
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: -0.5px;
-    text-decoration: none;
-  }
-  .logo .re { color: var(--lavender); }
-  .logo .bloo { color: var(--mist); }
-  .logo .ma { color: var(--amber); }
+/* ─────────────────────────────
+   GRADIENT UTILITIES
+───────────────────────────── */
+.grad-text{
+  background:var(--grad-text);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.grad-bg{background:var(--grad);}
+.grad-border{
+  position:relative;
+}
+.grad-border::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  padding:1.5px;
+  background:var(--grad);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
 
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    color: var(--mist);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 400;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--pale-lav); }
+/* ─────────────────────────────
+   LAYOUT
+───────────────────────────── */
+.container{max-width:1100px;margin:0 auto;padding:0 2rem;}
 
-  .btn-amber {
-    background: var(--amber);
-    color: var(--white);
-    border: none;
-    padding: 10px 22px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .btn-amber:hover { background: var(--ember); transform: translateY(-1px); }
+/* ─────────────────────────────
+   BUTTONS
+───────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.65rem 1.5rem;border-radius:100px;
+  font-family:var(--sans);font-size:.82rem;font-weight:500;
+  border:none;cursor:pointer;transition:all .18s;text-decoration:none;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-1px);opacity:.92;}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 4px 18px rgba(52,152,219,.3);}
+.btn-grad:hover{box-shadow:0 6px 24px rgba(52,152,219,.45);}
+.btn-charcoal{background:var(--charcoal);color:#fff;}
+.btn-charcoal:hover{background:#3a5068;}
+.btn-ghost{background:transparent;color:var(--charcoal);border:1.5px solid rgba(44,62,80,.2);}
+.btn-ghost:hover{background:rgba(44,62,80,.04);}
+.btn-white{background:#fff;color:var(--charcoal);}
+.btn-white-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);}
+.btn-white-outline:hover{background:rgba(255,255,255,.08);}
+.btn-lg{padding:.82rem 2rem;font-size:.9rem;}
 
-  .btn-outline {
-    background: transparent;
-    color: var(--pale-lav);
-    border: 0.5px solid var(--purple);
-    padding: 10px 22px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .btn-outline:hover { border-color: var(--lavender); background: rgba(123,100,176,0.1); }
+/* ─────────────────────────────
+   BADGES
+───────────────────────────── */
+.badge{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.22rem .75rem;border-radius:100px;
+  font-size:.67rem;font-weight:600;letter-spacing:.04em;
+}
+.bdg-sage{background:var(--sage);color:var(--sage-d);}
+.bdg-coral{background:var(--coral);color:#8b2020;}
+.bdg-gold{background:var(--gold);color:var(--gold-d);}
+.bdg-grad{background:var(--grad);color:#fff;}
+.bdg-ghost{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);border:.5px solid rgba(255,255,255,.18);}
+.bdg-teal{background:rgba(52,152,219,.12);color:var(--teal);}
+.bdg-purple{background:rgba(142,68,173,.12);color:var(--purple);}
 
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-    background: none;
-    border: none;
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: var(--pale-lav);
-    transition: all 0.3s;
-  }
+/* ─────────────────────────────
+   ANIMATIONS
+───────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes bloom{
+  0%{transform:scale(.92) rotate(-3deg);opacity:0;}
+  100%{transform:scale(1) rotate(0deg);opacity:1;}
+}
+@keyframes gradShift{
+  0%,100%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+}
+@keyframes pulse-glow{
+  0%,100%{box-shadow:0 0 0 0 rgba(52,152,219,.35);}
+  50%{box-shadow:0 0 0 10px rgba(52,152,219,0);}
+}
+@keyframes ticker{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+.anim-fade-up{animation:fadeUp .7s ease both;}
+.anim-fade-in{animation:fadeIn .6s ease both;}
+.anim-bloom{animation:bloom .8s cubic-bezier(.34,1.56,.64,1) both;}
+.d1{animation-delay:.08s;}
+.d2{animation-delay:.18s;}
+.d3{animation-delay:.28s;}
+.d4{animation-delay:.38s;}
+.d5{animation-delay:.48s;}
+.d6{animation-delay:.58s;}
+.d7{animation-delay:.68s;}
 
-  .mobile-menu {
-    display: none;
-    background: var(--violet);
-    padding: 1.5rem 2rem;
-    border-top: 0.5px solid rgba(170,147,212,0.15);
-  }
-  .mobile-menu.open { display: block; }
-  .mobile-menu a {
-    display: block;
-    color: var(--lilac);
-    text-decoration: none;
-    font-size: 16px;
-    padding: 0.75rem 0;
-    border-bottom: 0.5px solid rgba(170,147,212,0.1);
-  }
-  .mobile-menu .btn-amber { margin-top: 1.25rem; width: 100%; text-align: center; }
+/* Scroll reveal */
+.reveal{
+  opacity:0;transform:translateY(18px);
+  transition:opacity .65s ease,transform .65s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay{transition-delay:.12s;}
+.reveal-delay-2{transition-delay:.24s;}
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(180deg, #3A2468 0%, #2E1F5E 15%, #1E2848 30%, #152035 45%, #0F1828 60%, #18202E 72%, #2A2018 84%, #3C2A18 92%, #4A3020 100%);
-    padding: 7rem 2rem 6rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -20%;
-    width: 140%;
-    height: 200%;
-    background: radial-gradient(ellipse at 60% 30%, rgba(123,100,176,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse at 30% 70%, rgba(196,98,42,0.08) 0%, transparent 50%);
-    pointer-events: none;
-  }
-  .hero-inner {
-    max-width: 780px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-  .eyebrow {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--glow);
-    background: rgba(224,144,96,0.12);
-    border: 0.5px solid rgba(224,144,96,0.25);
-    padding: 5px 16px;
-    border-radius: 100px;
-    margin-bottom: 2rem;
-    animation: fadeUp 0.7s ease both;
-  }
-  .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-size: 58px;
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -2px;
-    color: var(--white);
-    margin-bottom: 1.5rem;
-    animation: fadeUp 0.7s 0.1s ease both;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--peach);
-  }
-  .hero-sub {
-    font-size: 18px;
-    color: var(--lilac);
-    line-height: 1.7;
-    font-weight: 300;
-    margin-bottom: 2.5rem;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeUp 0.7s 0.2s ease both;
-  }
-  .hero-actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    animation: fadeUp 0.7s 0.3s ease both;
-  }
-  .hero-actions .btn-amber,
-  .hero-actions .btn-outline {
-    padding: 14px 30px;
-    font-size: 15px;
-  }
+/* ─────────────────────────────
+   NAV
+───────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;
+  background:rgba(236,240,241,.9);
+  backdrop-filter:blur(18px);
+  border-bottom:.5px solid rgba(44,62,80,.08);
+  transition:background .25s;
+}
+.nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;}
+.nav-logo-img{height:36px;width:auto;display:block;}
+.nav-logo img{height:36px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-links a{
+  font-size:.81rem;color:rgba(44,62,80,.6);text-decoration:none;
+  transition:color .15s;font-weight:400;
+}
+.nav-links a:hover{color:var(--charcoal);}
+.nav-cta{display:flex;align-items:center;gap:.65rem;}
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* ─────────────────────────────
+   HERO — SPLIT DUAL ENTRY
+───────────────────────────── */
+.hero{
+  min-height:82vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+}
 
-  /* ── STAT BAR ── */
-  .stat-bar {
-    background: var(--white);
-    border-bottom: 0.5px solid var(--bd);
-  }
-  .stat-bar-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2.75rem 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 5rem;
-    flex-wrap: wrap;
-  }
-  .stat { text-align: center; }
-  .stat-num {
-    display: block;
-    font-family: 'Fraunces', serif;
-    font-size: 38px;
-    font-weight: 400;
-    color: var(--peach);
-    letter-spacing: -1px;
-    line-height: 1;
-  }
-  .stat-label {
-    display: block;
-    font-size: 13px;
-    color: var(--steel);
-    margin-top: 6px;
-    font-weight: 400;
-  }
+/* Decorative center divider */
+.hero::after{
+  content:'';
+  position:absolute;
+  left:50%;top:64px;bottom:0;
+  width:1.5px;
+  background:linear-gradient(180deg,transparent,rgba(52,152,219,.4),rgba(142,68,173,.4),transparent);
+  transform:translateX(-50%);
+  pointer-events:none;
+  z-index:1;
+}
 
-  /* ── SECTIONS ── */
-  section { padding: 5rem 2rem; }
-  .section-inner { max-width: 1000px; margin: 0 auto; }
-  .section-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--lavender);
-    margin-bottom: 0.75rem;
-    display: block;
-  }
-  .section-h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 40px;
-    font-weight: 300;
-    letter-spacing: -1px;
-    color: var(--navy);
-    line-height: 1.2;
-    margin-bottom: 3rem;
-  }
+/* Patient side — light */
+.hero-patient{
+  background:var(--white);
+  padding:5.5rem 3.5rem 5rem 3rem;
+  display:flex;flex-direction:column;justify-content:flex-start;
+  position:relative;overflow:hidden;
+}
+.hero-patient::before{
+  content:'';
+  position:absolute;
+  width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(52,152,219,.07),transparent 65%);
+  top:-120px;right:-120px;
+  pointer-events:none;
+}
+.hero-patient::after{
+  content:'';
+  position:absolute;
+  width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(213,245,227,.6),transparent 70%);
+  bottom:-80px;left:-60px;
+  pointer-events:none;
+}
 
-  /* ── TABS ── */
-  .tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 2.5rem;
-  }
-  .tab-btn {
-    padding: 9px 22px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    border: 0.5px solid var(--bd);
-    background: transparent;
-    color: var(--steel);
-    transition: all 0.2s;
-  }
-  .tab-btn.active {
-    background: var(--amber);
-    color: var(--white);
-    border-color: var(--amber);
-    font-weight: 500;
-  }
-  .tab-pane { display: none; }
-  .tab-pane.active { display: block; }
+/* Provider side — charcoal */
+.hero-provider{
+  background:linear-gradient(145deg,#f0ebf8 0%,#ede8f5 60%,#e8f0f8 100%);
+  padding:5.5rem 3.5rem 5rem 3rem;
+  display:flex;flex-direction:column;justify-content:flex-start;
+  position:relative;overflow:hidden;
+  border-left:.5px solid rgba(142,68,173,.12);
+}
+.hero-provider::before{
+  content:'';
+  position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(142,68,173,.1),transparent 65%);
+  top:-150px;right:-100px;
+  pointer-events:none;
+}
+.hero-provider::after{
+  content:'';
+  position:absolute;
+  width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(circle,rgba(52,152,219,.08),transparent 65%);
+  bottom:-100px;left:-80px;
+  pointer-events:none;
+}
 
-  /* ── STEPS ── */
-  .steps { display: flex; flex-direction: column; gap: 1.5rem; max-width: 620px; }
-  .step {
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
-    background: var(--white);
-    border: 0.5px solid var(--bd);
-    border-left: 3px solid var(--sky);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    transition: border-left-color 0.2s, box-shadow 0.2s;
-  }
-  .step:hover { border-left-color: var(--amber); box-shadow: 0 4px 20px rgba(30,48,80,0.07); }
-  .step.lmt-step { border-left-color: var(--lavender); }
-  .step.lmt-step:hover { border-left-color: var(--peach); }
-  .step-num {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: var(--violet);
-    color: var(--pale-lav);
-    font-size: 13px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-    font-family: 'Fraunces', serif;
-  }
-  .step-body h4 {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 5px;
-  }
-  .step-body p {
-    font-size: 14px;
-    color: var(--steel);
-    line-height: 1.6;
-  }
+.hero-tag{
+  font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:1.15rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.hero-tag-dot{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+}
+.hero-h1{
+  font-size:clamp(2.2rem,3.2vw,2.9rem);
+  margin-bottom:1.05rem;
+}
+.hero-sub{
+  font-size:.9rem;line-height:1.75;font-weight:300;
+  max-width:400px;margin-bottom:2rem;
+}
+.hero-actions{display:flex;gap:.65rem;flex-wrap:wrap;align-items:center;}
+.hero-note{font-size:.71rem;margin-top:.7rem;}
 
-  .pull-quote {
-    margin-top: 2rem;
-    border-left: 3px solid var(--amber);
-    padding: 1rem 1.5rem;
-    background: var(--fog-lav);
-    border-radius: 0 8px 8px 0;
-    max-width: 560px;
-  }
-  .pull-quote.lmt { border-left-color: var(--lavender); }
-  .pull-quote p {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 16px;
-    color: var(--navy-mid);
-    line-height: 1.6;
-    margin-bottom: 8px;
-  }
-  .pull-quote span { font-size: 12px; color: var(--sky); }
+/* Savings pill */
+.savings-pill{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--grad);
+  border-radius:100px;padding:.4rem 1rem .4rem .45rem;
+  font-size:.77rem;font-weight:500;color:#fff;
+  margin-bottom:1.35rem;width:fit-content;
+  box-shadow:0 4px 16px rgba(52,152,219,.28);
+}
+.savings-pill-ic{
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,.22);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0;
+}
 
-  /* ── FEATURE CARDS ── */
-  .how-section { background: var(--fog); }
-  .why-section { background: var(--white); }
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-  }
-  .feat-card {
-    background: var(--white);
-    border: 0.5px solid var(--bd);
-    border-radius: 12px;
-    padding: 1.75rem;
-    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  }
-  .feat-card:hover {
-    border-color: var(--purple);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 32px rgba(30,48,80,0.09);
-  }
-  .feat-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    background: var(--fog-lav);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.1rem;
-  }
-  .feat-icon svg { width: 18px; height: 18px; }
-  .feat-card h3 {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 8px;
-    line-height: 1.4;
-  }
-  .feat-card p {
-    font-size: 14px;
-    color: var(--steel);
-    line-height: 1.65;
-  }
+/* Provider stat strip */
+.stat-strip{
+  display:flex;gap:1.85rem;
+  margin-top:2rem;padding-top:1.75rem;
+  border-top:.5px solid rgba(255,255,255,.1);
+}
+.stat-val{
+  font-family:var(--serif);font-size:1.7rem;font-weight:400;
+  color:#fff;line-height:1;
+}
+.stat-lbl{font-size:.68rem;color:rgba(255,255,255,.42);margin-top:.18rem;}
 
-  /* ── MISSION ── */
-  .mission-section {
-    background: var(--navy);
-    padding: 5rem 2rem;
-  }
-  .mission-inner {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-  .mission-section .section-label { color: var(--glow); }
-  .mission-section .section-h2 {
-    color: var(--white);
-    font-size: 38px;
-    margin-bottom: 1.5rem;
-  }
-  .mission-section p {
-    font-size: 17px;
-    color: var(--lilac);
-    line-height: 1.8;
-    font-weight: 300;
-  }
+/* ─────────────────────────────
+   TRUST TICKER
+───────────────────────────── */
+.trust-bar{
+  background:var(--charcoal);
+  border-top:.5px solid rgba(255,255,255,.07);
+  padding:.85rem 0;
+  overflow:hidden;
+  position:relative;
+}
+.trust-bar::before,
+.trust-bar::after{
+  content:'';
+  position:absolute;top:0;bottom:0;width:80px;z-index:2;
+}
+.trust-bar::before{left:0;background:linear-gradient(90deg,var(--charcoal),transparent);}
+.trust-bar::after{right:0;background:linear-gradient(-90deg,var(--charcoal),transparent);}
+.trust-track{
+  display:flex;gap:3rem;
+  width:max-content;
+  animation:ticker 28s linear infinite;
+}
+.trust-item{
+  display:flex;align-items:center;gap:.55rem;
+  font-size:.74rem;color:rgba(255,255,255,.5);
+  white-space:nowrap;
+}
+.trust-item-dot{
+  width:5px;height:5px;border-radius:50%;flex-shrink:0;
+}
 
-  /* ── FAQ ── */
-  .faq-section { background: var(--fog-lav); }
-  .faq-list { max-width: 720px; }
-  .faq-item {
-    border-bottom: 0.5px solid rgba(74,53,122,0.2);
-  }
-  .faq-q {
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    padding: 1.25rem 0;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--navy);
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    transition: color 0.2s;
-  }
-  .faq-q:hover { color: var(--purple); }
-  .faq-q .faq-icon {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 0.5px solid var(--lavender);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--lavender);
-    font-size: 14px;
-    transition: transform 0.25s, background 0.2s;
-  }
-  .faq-item.open .faq-icon {
-    transform: rotate(45deg);
-    background: var(--lavender);
-    color: var(--white);
-  }
-  .faq-a {
-    font-size: 14px;
-    color: var(--steel);
-    line-height: 1.7;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.2s;
-    border-left: 3px solid var(--purple);
-    padding-left: 0;
-    margin-left: 0;
-    border-left-width: 0;
-  }
-  .faq-item.open .faq-a {
-    max-height: 200px;
-    padding: 0 0 1.25rem 1.25rem;
-    border-left-width: 3px;
-  }
+/* ─────────────────────────────
+   SECTION SHARED
+───────────────────────────── */
+.section{padding:6.5rem 0;}
+.section-eyebrow{
+  font-size:.65rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;margin-bottom:.55rem;
+}
+.section-title{font-size:clamp(1.9rem,2.8vw,2.6rem);margin-bottom:.65rem;}
+.section-sub{
+  font-size:.9rem;color:rgba(44,62,80,.6);font-weight:300;
+  line-height:1.72;max-width:520px;
+}
 
-  /* ── WAITLIST ── */
-  .waitlist-section {
-    background: var(--violet);
-    padding: 5rem 2rem;
-    text-align: center;
-  }
-  .waitlist-inner { max-width: 540px; margin: 0 auto; }
-  .waitlist-section h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 40px;
-    font-weight: 300;
-    letter-spacing: -1px;
-    color: var(--white);
-    margin-bottom: 0.75rem;
-  }
-  .waitlist-section .sub {
-    font-size: 16px;
-    color: var(--lilac);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-    font-weight: 300;
-  }
-  .wl-toggle {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-  .wl-tab {
-    padding: 8px 20px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    border: 0.5px solid var(--purple);
-    background: transparent;
-    color: var(--lilac);
-    transition: all 0.2s;
-  }
-  .wl-tab.active {
-    background: var(--amber);
-    color: var(--white);
-    border-color: var(--amber);
-    font-weight: 500;
-  }
-  .wl-form {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .wl-form input {
-    flex: 1;
-    min-width: 220px;
-    padding: 13px 18px;
-    border-radius: 6px;
-    border: 0.5px solid var(--pale-blue);
-    background: var(--navy-mid);
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--white);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .wl-form input::placeholder { color: var(--mist); }
-  .wl-form input:focus { border-color: var(--lavender); }
-  .wl-form .btn-amber { padding: 13px 24px; }
-  .wl-confirm {
-    font-size: 13px;
-    color: var(--pale-amb);
-    margin-top: 1rem;
-    min-height: 20px;
-  }
+/* ─────────────────────────────
+   HOW IT WORKS
+───────────────────────────── */
+.how-section{background:var(--white);}
+.paths-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.25rem;margin-top:3rem;
+  align-items:stretch;
+}
+.path-card{
+  border-radius:var(--radius);overflow:hidden;
+  border:.5px solid rgba(44,62,80,.1);
+  transition:transform .2s,box-shadow .2s;
+  display:flex;flex-direction:column;
+}
+.path-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--sh-md);
+}
+.path-hdr{
+  padding:1.35rem 1.5rem;
+  display:flex;align-items:center;gap:.8rem;
+}
+.path-hdr-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.05rem;flex-shrink:0;
+}
+.path-hdr-title{font-size:.92rem;font-weight:500;margin-bottom:.1rem;}
+.path-hdr-sub{font-size:.71rem;opacity:.65;}
+.path-card.teal-path .path-hdr{background:var(--teal);color:#fff;}
+.path-card.purple-path .path-hdr{background:var(--purple);color:#fff;}
+.path-body{background:var(--bg);padding:1.4rem 1.5rem;flex:1;}
+.path-step{display:flex;gap:.85rem;margin-bottom:.95rem;}
+.path-step:last-child{margin-bottom:0;}
+.pstep-num{
+  width:24px;height:24px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.62rem;font-weight:700;color:#fff;flex-shrink:0;
+  margin-top:.1rem;
+}
+.teal-path .pstep-num{background:var(--teal);}
+.purple-path .pstep-num{background:var(--purple);}
+.pstep-title{font-size:.84rem;font-weight:500;margin-bottom:.15rem;}
+.pstep-desc{font-size:.74rem;color:rgba(44,62,80,.55);line-height:1.58;}
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--ink);
-    padding: 2.5rem 2rem;
-    border-top: 0.5px solid rgba(170,147,212,0.1);
-  }
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .footer-logo { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 400; }
-  .footer-logo .re { color: var(--lavender); }
-  .footer-logo .bloo { color: var(--mist); }
-  .footer-logo .ma { color: var(--ember); }
-  footer p { font-size: 13px; color: var(--steel); }
-  footer a { color: var(--steel); text-decoration: none; transition: color 0.2s; }
-  footer a:hover { color: var(--lilac); }
-  .footer-tagline {
-    font-size: 13px;
-    color: var(--lavender);
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 300;
-  }
+/* ─────────────────────────────
+   SUPPORT PACKAGE
+───────────────────────────── */
+.bundle-section{
+  background:var(--charcoal);
+  position:relative;overflow:hidden;
+}
+.bundle-section::before{
+  content:'';
+  position:absolute;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(52,152,219,.1),transparent 65%);
+  top:-250px;right:-150px;pointer-events:none;
+}
+.bundle-section::after{
+  content:'';
+  position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(142,68,173,.1),transparent 65%);
+  bottom:-150px;left:-80px;pointer-events:none;
+}
+.bundle-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+  position:relative;z-index:1;
+}
+.bundle-eyebrow{color:rgba(52,152,219,.85);}
+.bundle-title{color:#fff;}
+.bundle-sub{color:rgba(255,255,255,.45);max-width:400px;margin-top:.5rem;}
+.bundle-note{
+  margin-top:1.75rem;
+  padding:1rem 1.2rem;
+  background:rgba(255,255,255,.05);
+  border:.5px solid rgba(255,255,255,.1);
+  border-radius:var(--radius-sm);
+  font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.65;
+}
+.bundle-note strong{color:rgba(255,255,255,.75);}
 
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.docs-stack{display:flex;flex-direction:column;gap:.65rem;}
+.doc-card{
+  display:flex;align-items:center;gap:.9rem;
+  background:rgba(255,255,255,.05);
+  border:.5px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:1rem 1.15rem;
+  transition:background .18s,border-color .18s;
+}
+.doc-card:hover{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(52,152,219,.3);
+}
+.doc-num{
+  width:34px;height:34px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1rem;color:#fff;
+  flex-shrink:0;
+}
+.doc-n1{background:rgba(52,152,219,.35);}
+.doc-n2{background:rgba(142,68,173,.35);}
+.doc-n3{background:rgba(201,162,39,.35);}
+.doc-title{font-size:.84rem;font-weight:500;color:#fff;margin-bottom:.1rem;}
+.doc-desc{font-size:.71rem;color:rgba(255,255,255,.42);line-height:1.5;}
+.doc-tag{margin-left:auto;flex-shrink:0;}
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .hero h1 { font-size: 36px; letter-spacing: -1px; }
-    .hero-sub { font-size: 16px; }
-    .stat-bar-inner { gap: 2.5rem; }
-    .stat-num { font-size: 30px; }
-    .section-h2 { font-size: 30px; }
-    .cards-grid { grid-template-columns: 1fr; }
-    .mission-section .section-h2 { font-size: 28px; }
-    .waitlist-section h2 { font-size: 30px; }
-    .footer-inner { flex-direction: column; text-align: center; }
-    .tabs { overflow-x: auto; padding-bottom: 4px; }
-  }
+/* ─────────────────────────────
+   FOR YOU SECTION
+───────────────────────────── */
+.for-section{background:var(--bg);}
+.for-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.25rem;margin-top:3rem;
+  align-items:stretch;
+}
+.for-card{
+  background:var(--white);border-radius:var(--radius);
+  padding:2rem;border:.5px solid rgba(44,62,80,.08);
+  transition:transform .2s,box-shadow .2s;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.for-card::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:3px;
+  opacity:0;transition:opacity .2s;
+}
+.for-card.patient-card::after{background:var(--teal);}
+.for-card.provider-card::after{background:var(--purple);}
+.for-card:hover{transform:translateY(-4px);box-shadow:var(--sh-md);}
+.for-card:hover::after{opacity:1;}
+.for-icon{
+  width:46px;height:46px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;margin-bottom:1.15rem;
+}
+.for-type{
+  font-size:.64rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;margin-bottom:.4rem;
+}
+.patient-card .for-type{color:var(--teal);}
+.provider-card .for-type{color:var(--purple);}
+.for-title{
+  font-family:var(--serif);font-size:1.1rem;font-weight:400;
+  margin-bottom:.65rem;
+}
+.for-body{font-size:.81rem;color:rgba(44,62,80,.6);line-height:1.72;margin-bottom:1.35rem;font-weight:300;flex:1;}
+.for-checks{display:flex;flex-direction:column;gap:.42rem;margin-bottom:1.5rem;flex-shrink:0;}
+.for-check{display:flex;align-items:flex-start;gap:.52rem;font-size:.8rem;color:var(--charcoal);}
+.check-ic{
+  width:17px;height:17px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.55rem;color:#fff;flex-shrink:0;margin-top:.15rem;
+}
+.teal-check{background:var(--teal);}
+.purple-check{background:var(--purple);}
+
+/* Modalities strip */
+.modalities{
+  margin-top:2rem;
+  background:var(--white);
+  border-radius:14px;
+  padding:1.4rem 2rem;
+  border:.5px solid rgba(44,62,80,.08);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.mod-label{font-size:.78rem;font-weight:500;color:var(--charcoal);}
+.mod-items{display:flex;gap:1.75rem;flex-wrap:wrap;}
+.mod-item{
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.78rem;color:rgba(44,62,80,.55);
+}
+
+/* ─────────────────────────────
+   WAITLIST
+───────────────────────────── */
+.waitlist-section{
+  background:var(--white);
+  position:relative;overflow:hidden;
+}
+.waitlist-section::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 15% 50%,rgba(52,152,219,.06),transparent 55%),
+    radial-gradient(ellipse at 85% 50%,rgba(142,68,173,.06),transparent 55%);
+  pointer-events:none;
+}
+.waitlist-inner{
+  max-width:600px;margin:0 auto;
+  text-align:center;position:relative;z-index:1;
+}
+.waitlist-inner .section-title{font-size:clamp(2rem,3.5vw,2.85rem);}
+.waitlist-inner .section-sub{margin:0 auto .65rem;text-align:center;}
+
+/* Tabs */
+.wl-tabs{
+  display:flex;gap:.3rem;
+  background:var(--bg);border-radius:100px;
+  padding:.28rem;margin:1.75rem auto 2rem;
+  width:fit-content;
+}
+.wl-tab{
+  padding:.45rem 1.35rem;border-radius:100px;
+  font-family:var(--sans);font-size:.8rem;font-weight:500;
+  border:none;cursor:pointer;transition:all .18s;
+  color:rgba(44,62,80,.5);background:transparent;
+}
+.wl-tab.active{
+  background:var(--white);color:var(--charcoal);
+  box-shadow:0 1px 6px rgba(44,62,80,.1);
+}
+
+/* Form */
+.wl-form{
+  display:flex;flex-direction:column;gap:.8rem;
+  text-align:left;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.fg{display:flex;flex-direction:column;gap:.28rem;}
+.fg label{font-size:.71rem;font-weight:500;color:var(--charcoal);}
+.fg input,.fg select{
+  padding:.7rem 1.05rem;
+  border:1.5px solid rgba(44,62,80,.12);
+  border-radius:var(--radius-sm);
+  font-family:var(--sans);font-size:.83rem;
+  background:var(--bg);color:var(--charcoal);
+  outline:none;transition:border-color .15s,background .15s;
+}
+.fg input:focus,.fg select:focus{
+  border-color:var(--teal);background:var(--white);
+}
+.fg input::placeholder{color:rgba(44,62,80,.28);}
+.fg select{
+  appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg width='11' height='7' viewBox='0 0 11 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5.5 5.5L10 1' stroke='%232c3e50' stroke-opacity='0.35' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 1rem center;
+  padding-right:2.5rem;
+  background-color:var(--bg);
+}
+.wl-submit{
+  background:var(--grad);color:#fff;
+  padding:.85rem;border-radius:var(--radius-sm);
+  font-family:var(--sans);font-size:.9rem;font-weight:500;
+  border:none;cursor:pointer;
+  transition:opacity .18s,transform .15s,box-shadow .18s;
+  box-shadow:0 4px 20px rgba(52,152,219,.3);
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.wl-submit:hover{
+  opacity:.9;transform:translateY(-1px);
+  box-shadow:0 6px 28px rgba(52,152,219,.42);
+}
+.wl-note{font-size:.71rem;color:rgba(44,62,80,.45);text-align:center;margin-top:.35rem;}
+
+/* Success */
+.wl-success{
+  display:none;
+  text-align:center;
+  padding:2.75rem 2rem;
+  background:var(--sage);
+  border:1px solid rgba(26,122,74,.2);
+  border-radius:var(--radius);
+}
+.success-icon{
+  width:54px;height:54px;border-radius:50%;
+  background:var(--grad);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto .95rem;
+  font-size:1.25rem;color:#fff;
+}
+.success-title{font-family:var(--serif);font-size:1.55rem;font-weight:300;color:var(--sage-d);margin-bottom:.4rem;}
+.success-sub{font-size:.84rem;color:rgba(26,122,74,.75);font-weight:300;line-height:1.65;}
+
+/* Social proof */
+.social-proof{
+  display:flex;align-items:center;justify-content:center;
+  gap:.55rem;margin-top:1.85rem;
+  font-size:.74rem;color:rgba(44,62,80,.45);
+}
+.sp-avatars{display:flex;}
+.sp-av{
+  width:26px;height:26px;border-radius:50%;
+  border:2px solid var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.58rem;font-weight:600;color:#fff;
+  margin-left:-6px;
+}
+.sp-av:first-child{margin-left:0;}
+
+/* ─────────────────────────────
+   FAQ
+───────────────────────────── */
+.faq-section{background:var(--bg);}
+.faq-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;margin-top:3rem;
+}
+.faq-item{
+  background:var(--white);border-radius:12px;
+  padding:1.4rem 1.5rem;
+  border:.5px solid rgba(44,62,80,.08);
+}
+.faq-q{font-size:.88rem;font-weight:500;margin-bottom:.48rem;}
+.faq-a{font-size:.79rem;color:rgba(44,62,80,.58);line-height:1.68;font-weight:300;}
+
+/* ─────────────────────────────
+   FOOTER
+───────────────────────────── */
+.footer{
+  background:var(--charcoal);
+  padding:2.75rem 2.5rem 2rem;
+}
+.footer-top{
+  display:flex;align-items:flex-start;
+  justify-content:space-between;flex-wrap:wrap;gap:2rem;
+  padding-bottom:2rem;
+  border-bottom:.5px solid rgba(255,255,255,.08);
+}
+.footer-logo-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem;}
+.footer-logo-img{height:38px;width:auto;}
+.footer-brand-name{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:rgba(255,255,255,.85);letter-spacing:-.02em;line-height:1;}
+.footer-tagline{font-size:.76rem;color:rgba(255,255,255,.35);max-width:260px;line-height:1.6;}
+.footer-links{display:flex;gap:2.5rem;flex-wrap:wrap;}
+.footer-col-title{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:.75rem;}
+.footer-col a{display:block;font-size:.79rem;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:.38rem;transition:color .15s;}
+.footer-col a:hover{color:rgba(255,255,255,.8);}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+  padding-top:1.5rem;
+  font-size:.71rem;color:rgba(255,255,255,.25);
+}
+.footer-legal-links{display:flex;gap:1.5rem;}
+.footer-legal-links a{color:rgba(255,255,255,.25);text-decoration:none;transition:color .15s;}
+.footer-legal-links a:hover{color:rgba(255,255,255,.5);}
+
+/* ─────────────────────────────
+   RESPONSIVE
+───────────────────────────── */
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;}
+  .hero::after{display:none;}
+  .hero-patient,.hero-provider{padding:3.75rem 2rem;}
+  .paths-grid,.bundle-inner,.for-grid,.faq-grid,.form-row{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .bundle-inner{gap:3rem;}
+  .stat-strip{gap:1.25rem;}
+  .trust-bar{display:none;}
+  .modalities{flex-direction:column;align-items:flex-start;}
+}
+
+/* ─ For-card callout boxes (shared structure, themed per side) ─ */
+.for-callout{
+  border-radius:var(--radius-sm);
+  padding:.82rem 1rem;
+  margin-bottom:1.25rem;
+  font-size:.77rem;
+  line-height:1.62;
+  flex-shrink:0;
+}
+.for-callout-teal{
+  background:var(--teal-l);
+  border:.5px solid rgba(52,152,219,.2);
+  color:rgba(44,62,80,.75);
+}
+.for-callout-teal strong{color:var(--teal);}
+.for-callout-purple{
+  background:rgba(142,68,173,.07);
+  border:.5px solid rgba(142,68,173,.18);
+  color:rgba(44,62,80,.75);
+}
+.for-callout-purple strong{color:var(--purple);}
+
+/* ─ For-card CTA buttons (shared structure, themed per side) ─ */
+.for-cta{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.65rem 1.5rem;border-radius:100px;
+  font-family:var(--sans);font-size:.82rem;font-weight:500;
+  border:none;cursor:pointer;transition:all .18s;
+  text-decoration:none;white-space:nowrap;
+  align-self:flex-start;margin-top:auto;
+}
+.for-cta:hover{transform:translateY(-1px);opacity:.9;}
+.for-cta-teal{background:var(--teal);color:#fff;}
+.for-cta-purple{background:var(--purple);color:#fff;}
+
+
+/* ─ Hero intro — full-width above the split ─ */
+.hero-intro{
+  padding-top:64px;  /* matches nav height */
+  background:var(--white);
+  border-bottom:.5px solid rgba(44,62,80,.08);
+}
+.hero-intro-inner{
+  max-width:820px;
+  margin:0 auto;
+  padding:3.5rem 2rem 3rem;
+  text-align:center;
+}
+.hero-intro-logo-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:.65rem;margin-bottom:1.1rem;
+}
+.hero-intro-tag{
+  display:inline-flex;align-items:center;
+  background:var(--grad);
+  color:#fff;
+  font-size:.68rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:.28rem .85rem;
+  border-radius:100px;
+}
+.hero-intro-title{
+  font-family:var(--serif);
+  font-size:clamp(1.65rem,2.5vw,2.2rem);
+  font-weight:300;
+  line-height:1.2;
+  color:var(--charcoal);
+  margin-bottom:.85rem;
+  letter-spacing:-.025em;
+}
+.hero-intro-title em{
+  font-style:italic;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-intro-sub{
+  font-size:.88rem;
+  color:rgba(44,62,80,.55);
+  line-height:1.78;
+  font-weight:300;
+  max-width:680px;
+  margin:0 auto;
+}
+
+/* Hero split no longer needs top padding for nav — intro handles that */
+.hero{
+  padding-top:0;
+}
+
+/* Nav logo — tulip mark + wordmark */
+.nav-tulip{
+  height:38px;
+  width:auto;
+  display:block;
+  flex-shrink:0;
+}
+.nav-wordmark{
+  font-family:var(--serif);
+  font-size:1.25rem;
+  font-weight:400;
+  letter-spacing:-.02em;
+  color:var(--charcoal);
+  line-height:1;
+}
+/* Footer brand name already has .footer-brand-name CSS */
+
+/* ─ Intro stats strip — CareMap style ─ */
+.intro-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(44,62,80,.1);
+  margin-top:0;
+}
+.intro-stat{
+  padding:2rem 1.5rem;
+  text-align:center;
+  border-right:.5px solid rgba(44,62,80,.1);
+  transition:background .18s;
+}
+.intro-stat:last-child{border-right:none;}
+.intro-stat:hover{background:rgba(52,152,219,.03);}
+.intro-stat-val{
+  font-family:var(--serif);
+  font-size:2.6rem;
+  font-weight:400;
+  line-height:1;
+  margin-bottom:.45rem;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  letter-spacing:-.03em;
+}
+.intro-stat-unit{
+  font-size:1.6rem;
+  font-weight:300;
+}
+.intro-stat-lbl{
+  font-size:.78rem;
+  color:rgba(44,62,80,.52);
+  line-height:1.55;
+  font-weight:300;
+  max-width:160px;
+  margin:0 auto;
+}
+
+/* Hero intro padding adjustment — remove bottom padding, stats flush to bottom */
+.hero-intro-inner{
+  padding-bottom:2rem;
+}
+
+@media(max-width:860px){
+  .intro-stats{grid-template-columns:repeat(2,1fr);}
+  .intro-stat:nth-child(2){border-right:none;}
+  .intro-stat:nth-child(3){border-top:.5px solid rgba(44,62,80,.1);}
+  .intro-stat:nth-child(4){border-right:none;border-top:.5px solid rgba(44,62,80,.1);}
+}
+
+.intro-stat-src{
+  font-size:.64rem;
+  color:rgba(44,62,80,.32);
+  margin-top:.35rem;
+  font-style:italic;
+  letter-spacing:.02em;
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="tribar"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div>
-  <div class="nav-inner">
-    <a href="#" class="logo"><span class="re">Re</span><span class="bloo">bloo</span><span class="ma">ma</span></a>
-    <ul class="nav-links">
-      <li><a href="#how-it-works">For patients</a></li>
-      <li><a href="#how-it-works" onclick="setTimeout(()=>switchTab('lmt'),100)">For therapists</a></li>
-      <li><a href="#waitlist" class="btn-amber">Join waitlist</a></li>
-    </ul>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+<!-- ─── NAV ─── -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <img src="data:image/png;base64,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" alt="Reblooma tulip" class="nav-tulip">
+    <span class="nav-wordmark">Reblooma</span>
+  </a>
+  <div class="nav-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#for-you">Who it's for</a>
+    <a href="#faq">FAQ</a>
   </div>
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#how-it-works" onclick="toggleMenu()">For patients</a>
-    <a href="#how-it-works" onclick="toggleMenu(); setTimeout(()=>switchTab('lmt'),200)">For therapists</a>
-    <a href="#waitlist" class="btn-amber" onclick="toggleMenu()">Join waitlist</a>
+  <div class="nav-cta">
+    <a href="#waitlist" class="btn btn-ghost" style="padding:.4rem 1.05rem;font-size:.78rem;">Log in</a>
+    <a href="#waitlist" class="btn btn-grad" style="padding:.4rem 1.15rem;font-size:.78rem;">Join waitlist →</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">Healthcare marketplace · Bay Area</div>
-    <h1>Massage therapy is healthcare.<br><em>We make it billable.</em></h1>
-    <p class="hero-sub">Reblooma connects patients to licensed massage therapists with integrated insurance infrastructure — so you spend less time worrying about cost and more time recovering.</p>
-    <div class="hero-actions">
-      <a href="#waitlist" class="btn-amber">Get early access</a>
-      <a href="#how-it-works" class="btn-outline" onclick="setTimeout(()=>switchTab('lmt'),100)">I'm a therapist</a>
+<!-- ─── HERO INTRO ─── -->
+<div class="hero-intro anim-fade-up d1">
+  <div class="hero-intro-inner">
+    <h2 class="hero-intro-title">
+      <strong>The FSA/HSA compliance and payment infrastructure<br>
+      for <em>wellness providers and their patients.</em></strong>
+    </h2>
+    <p class="hero-intro-sub">
+      Reblooma bridges the gap between wellness care and tax-advantaged healthcare spending. Through a clinician-issued Letter of Medical Necessity, AI-assisted clinical documentation, and an itemized superbill — every session becomes a <strong>fully reimbursable, audit-proof medical expense</strong> under IRC Sec 213(d)(1).
+    </p>
+  </div>
+  <!-- STATS STRIP — FSA/HSA as business growth driver -->
+  <div class="intro-stats">
+    <div class="intro-stat">
+      <div class="intro-stat-val">40<span class="intro-stat-unit">%</span></div>
+      <div class="intro-stat-lbl">of FSA holders forfeit unused funds every year — money left on the table</div>
+      <div class="intro-stat-src">FSA Store / EBRI</div>
+    </div>
+    <div class="intro-stat">
+      <div class="intro-stat-val">30–60<span class="intro-stat-unit">%</span></div>
+      <div class="intro-stat-lbl">higher spend per visit from patients paying with FSA/HSA vs. out-of-pocket</div>
+      <div class="intro-stat-src">FSA/HSA merchant data</div>
+    </div>
+    <div class="intro-stat">
+      <div class="intro-stat-val">$175<span class="intro-stat-unit">B</span></div>
+      <div class="intro-stat-lbl">contributed to FSA &amp; HSA accounts annually — funds patients are ready to spend</div>
+      <div class="intro-stat-src">IRS / EBRI</div>
+    </div>
+    <div class="intro-stat">
+      <div class="intro-stat-val">70<span class="intro-stat-unit">M+</span></div>
+      <div class="intro-stat-lbl">Americans currently holding an FSA or HSA account — your next patients</div>
+      <div class="intro-stat-src">IRS / SHRM</div>
     </div>
   </div>
 </div>
 
-<!-- STAT BAR -->
-<div class="stat-bar">
-  <div class="stat-bar-inner">
-    <div class="stat reveal">
-      <span class="stat-num">65M+</span>
-      <span class="stat-label">Americans with chronic pain</span>
+<!-- ─── HERO ─── -->
+<section class="hero">
+
+  <!-- PATIENT SIDE -->
+  <div class="hero-patient">
+    <div class="savings-pill anim-bloom d1">
+      <div class="savings-pill-ic">$</div>
+      Save 20–30% on every wellness session
     </div>
-    <div class="stat reveal" style="transition-delay:0.1s">
-      <span class="stat-num">100%</span>
-      <span class="stat-label">Up to 100% covered for eligible patients</span>
+    <div class="hero-tag anim-fade-up d2" style="color:rgba(44,62,80,.5);">
+      <div class="hero-tag-dot" style="background:var(--teal);"></div>
+      For Patients
     </div>
-    <div class="stat reveal" style="transition-delay:0.2s">
-      <span class="stat-num">45%</span>
-      <span class="stat-label">Effective savings vs retail</span>
+    <h1 class="hero-h1 anim-fade-up d3">
+      Your wellness visits<br>
+      are already <em class="grad-text">paid for.</em><br>
+      You just don't<br>
+      know it yet.
+    </h1>
+    <p class="hero-sub anim-fade-up d4" style="color:rgba(44,62,80,.6);">
+      If you have an <strong>FSA or HSA</strong>, your pre-tax dollars can cover massage therapy, infrared sauna, red light therapy, cold plunge, and more — when properly documented. Reblooma handles the entire <strong>compliance layer</strong> so you don't have to.
+    </p>
+    <div class="hero-actions anim-fade-up d5">
+      <a href="#waitlist" class="btn btn-grad btn-lg">Start pre-checkin →</a>
+      <a href="#how-it-works" class="btn btn-ghost">How it works</a>
     </div>
+    <p class="hero-note anim-fade-up d6" style="color:rgba(44,62,80,.4);">
+      5-minute intake · LMN issued same-day · HIPAA compliant
+    </p>
+
+  </div>
+
+  <!-- PROVIDER SIDE -->
+  <div class="hero-provider">
+    <div class="savings-pill anim-bloom d1" style="background:rgba(142,68,173,.1);box-shadow:none;border:.5px solid rgba(142,68,173,.2);color:var(--purple);">
+      <div class="savings-pill-ic" style="background:var(--purple);">↑</div>
+      FSA/HSA compliance drives new &amp; returning patients
+    </div>
+    <div class="hero-tag anim-fade-up d2" style="color:rgba(44,62,80,.5);">
+      <div class="hero-tag-dot" style="background:var(--purple);"></div>
+      For Wellness Practitioners
+    </div>
+    <h1 class="hero-h1 anim-fade-up d3" style="color:var(--charcoal);">
+      Be FSA/HSA compliant<br>
+      Acquire new patients<br>
+      and turn visits<br>
+      into <em class="grad-text">recurring revenue.</em>
+    </h1>
+    <p class="hero-sub anim-fade-up d4" style="color:rgba(44,62,80,.62);">
+      Under <strong>IRC Sec 213(d)(1)</strong>, wellness services qualify as FSA/HSA-eligible medical expenses — when properly documented. Reblooma gives you the compliance layer that turns that tax code into <strong>new patients</strong> and <strong>repeat bookings</strong>.
+    </p>
+    <div class="hero-actions anim-fade-up d5">
+      <a href="#waitlist" class="btn btn-grad btn-lg">Connect my practice →</a>
+      <a href="#how-it-works" class="btn btn-ghost">Learn more</a>
+    </div>
+    <p class="hero-note anim-fade-up d6" style="color:rgba(44,62,80,.42);">
+      No marketplace commitment required · NPI + CAMTC verified
+    </p>
+  </div>
+
+</section>
+
+<!-- ─── TRUST TICKER ─── -->
+<div class="trust-bar">
+  <div class="trust-track">
+    <!-- duplicated for seamless loop -->
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--teal);"></div>CAMTC-verified therapists</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--purple);"></div>Telehealth-issued LMN same-day</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--teal);"></div>AI-assisted SOAP notes</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--purple);"></div>FSA &amp; HSA payment ready</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--teal);"></div>IRC Sec 213(d)(1) compliant</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--purple);"></div>HIPAA compliant</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--teal);"></div>Massage therapy · Sauna · Red light · Cryotherapy</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--purple);"></div>Itemized superbill per session</div>
+    <!-- duplicate set -->
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--teal);"></div>CAMTC-verified therapists</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--purple);"></div>Telehealth-issued LMN same-day</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--teal);"></div>AI-assisted SOAP notes</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--purple);"></div>FSA &amp; HSA payment ready</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--teal);"></div>IRC Sec 213(d)(1) compliant</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--purple);"></div>HIPAA compliant</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--teal);"></div>Massage therapy · Sauna · Red light · Cryotherapy</div>
+    <div class="trust-item"><div class="trust-item-dot" style="background:var(--purple);"></div>Itemized superbill per session</div>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section class="how-section" id="how-it-works">
-  <div class="section-inner">
-    <span class="section-label reveal">How it works</span>
-    <h2 class="section-h2 reveal">Your care. Your coverage.</h2>
-
-    <div class="tabs reveal">
-      <button class="tab-btn active" id="tab-patient" onclick="switchTab('patient')">For patients</button>
-      <button class="tab-btn" id="tab-lmt" onclick="switchTab('lmt')">For therapists</button>
+<!-- ─── HOW IT WORKS ─── -->
+<section class="section how-section" id="how-it-works">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow" style="color:var(--teal);">How it works</div>
+      <h2 class="section-title">Two ways in.<br><em class="grad-text">One compliance layer.</em></h2>
+      <p class="section-sub">Whether your therapist introduces you to Reblooma, or you discover us first — the outcome is the same: a fully documented, FSA/HSA-reimbursable wellness session.</p>
     </div>
 
-    <div class="tab-pane active" id="pane-patient">
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <h4>Tell us what's going on</h4>
-            <p>Complete a short symptom intake. We'll understand your condition and what kind of care you need.</p>
-          </div>
-        </div>
-        <div class="step reveal" style="transition-delay:0.1s">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <h4>Get a telehealth evaluation</h4>
-            <p>A licensed clinician evaluates you via telehealth and issues a massage therapy prescription. Billable to your insurance as a clinical visit.</p>
-          </div>
-        </div>
-        <div class="step reveal" style="transition-delay:0.15s">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <h4>Book your therapist</h4>
-            <p>Browse verified licensed massage therapists in your area. Book directly through Reblooma.</p>
-          </div>
-        </div>
-        <div class="step reveal" style="transition-delay:0.2s">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <h4>We handle the paperwork</h4>
-            <p>Reblooma generates your superbill automatically. Submit to insurance for reimbursement, or use your FSA/HSA — your prescription makes it eligible.</p>
-          </div>
-        </div>
-      </div>
-      <div class="pull-quote reveal" style="transition-delay:0.25s">
-        <p>"I had no idea my insurance could help cover massage. Reblooma made it simple — I just showed up."</p>
-        <span>Early access patient, Bay Area</span>
-      </div>
-    </div>
+    <div class="paths-grid">
 
-    <div class="tab-pane" id="pane-lmt">
-      <div class="steps">
-        <div class="step lmt-step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <h4>Apply to join</h4>
-            <p>We verify your license and credentials. Takes minutes, not weeks.</p>
+      <!-- PATH: PATIENT (LEFT / TEAL) -->
+      <div class="path-card teal-path reveal reveal-delay">
+        <div class="path-hdr">
+          <div class="path-hdr-icon" style="background:rgba(255,255,255,.12);">🛋️</div>
+          <div>
+            <div class="path-hdr-title">For Patients</div>
+            <div class="path-hdr-sub">Your journey to FSA/HSA-reimbursable wellness</div>
           </div>
         </div>
-        <div class="step lmt-step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <h4>Receive qualified patients</h4>
-            <p>Every Reblooma patient arrives with a clinical prescription. No cold inquiries, no explaining why massage is medically legitimate. No superbill generation needed — our AI tool captures the areas you treated and produces the superbill automatically.</p>
+        <div class="path-body">
+          <div class="path-step">
+            <div class="pstep-num">1</div>
+            <div>
+              <div class="pstep-title">Complete your pre-checkin</div>
+              <div class="pstep-desc">Describe your symptoms in plain language — takes 5 minutes on your phone. Our AI maps your intake to clinical codes for the clinician review.</div>
+            </div>
           </div>
-        </div>
-        <div class="step lmt-step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <h4>Get paid at session completion</h4>
-            <p>No chasing payments, no insurance claims on your end. Reblooma handles billing infrastructure so you focus on care.</p>
+          <div class="path-step">
+            <div class="pstep-num">2</div>
+            <div>
+              <div class="pstep-title">Receive your LMN same-day</div>
+              <div class="pstep-desc">A licensed telehealth clinician issues your Letter of Medical Necessity — pre-dated before your session, satisfying the IRC 213(d)(1) requirement.</div>
+            </div>
           </div>
-        </div>
-        <div class="step lmt-step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <h4>Grow your practice</h4>
-            <p>New to the field? Our launch program helps you build a patient base from day one with platform support and steady booking flow.</p>
+          <div class="path-step">
+            <div class="pstep-num">3</div>
+            <div>
+              <div class="pstep-title">Attend your wellness session</div>
+              <div class="pstep-desc">Visit your practitioner as normal. Reblooma handles all documentation quietly in the background — no extra steps for you at checkout.</div>
+            </div>
+          </div>
+          <div class="path-step">
+            <div class="pstep-num">4</div>
+            <div>
+              <div class="pstep-title">Receive your Support Package</div>
+              <div class="pstep-desc">Your LMN, signed SOAP note, and itemized superbill are bundled automatically and stored in your Patient Organizer — ready to submit to Wex, Optum, or HealthEquity for reimbursement.</div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="pull-quote lmt">
-        <p>"Finally a platform that treats massage therapy as what it is — legitimate medical care."</p>
-        <span>Licensed massage therapist, San Jose</span>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- WHY REBLOOMA -->
-<section class="why-section">
-  <div class="section-inner">
-    <span class="section-label reveal">Why Reblooma</span>
-    <h2 class="section-h2 reveal"><span style="color:#7B64B0;">Re</span><span style="color:#1E3050;">bloo</span><span style="color:#C4622A;">ma</span> — built differently,<br>for a reason.</h2>
-    <div class="cards-grid">
-      <div class="feat-card reveal">
-        <div class="feat-icon" style="background: #EDE8F6;">
-          <svg viewBox="0 0 18 18" fill="none">
-            <path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9S4.86 16.5 9 16.5 16.5 13.14 16.5 9 13.14 1.5 9 1.5z" fill="#7B64B0"/>
-            <path d="M9 4.5v5.25l3 1.75" stroke="#D4C8ED" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
+      <!-- PATH: PRACTITIONER (RIGHT / PURPLE) -->
+      <div class="path-card purple-path reveal reveal-delay-2">
+        <div class="path-hdr">
+          <div class="path-hdr-icon" style="background:rgba(255,255,255,.12);">💆</div>
+          <div>
+            <div class="path-hdr-title">For Wellness Practitioners</div>
+            <div class="path-hdr-sub">Your workflow — with FSA/HSA compliance built in</div>
+          </div>
         </div>
-        <h3>Prescription-backed care</h3>
-        <p>Every session starts with a licensed clinical evaluation, making your massage medically documentable and insurance-eligible.</p>
-      </div>
-      <div class="feat-card reveal" style="transition-delay:0.08s">
-        <div class="feat-icon" style="background: #EBF1F7;">
-          <svg viewBox="0 0 18 18" fill="none">
-            <rect x="2.25" y="3" width="13.5" height="12" rx="1.5" fill="#1E3050"/>
-            <rect x="4.5" y="6" width="9" height="1.2" rx="0.6" fill="#8AAEC8"/>
-            <rect x="4.5" y="8.4" width="6" height="1.2" rx="0.6" fill="#8AAEC8"/>
-            <rect x="4.5" y="10.8" width="7.5" height="1.2" rx="0.6" fill="#8AAEC8"/>
-          </svg>
+        <div class="path-body">
+          <div class="path-step">
+            <div class="pstep-num">1</div>
+            <div>
+              <div class="pstep-title">Send your patient a pre-checkin link</div>
+              <div class="pstep-desc">Before their appointment, send a Reblooma pre-checkin link via text or email. Your patient completes it in 5 minutes — no change to your booking system.</div>
+            </div>
+          </div>
+          <div class="path-step">
+            <div class="pstep-num">2</div>
+            <div>
+              <div class="pstep-title">LMN auto-issued to your patient</div>
+              <div class="pstep-desc">Reblooma's telehealth partner reviews the intake and issues the Letter of Medical Necessity. It's on file before your patient arrives — compliance handled.</div>
+            </div>
+          </div>
+          <div class="path-step">
+            <div class="pstep-num">3</div>
+            <div>
+              <div class="pstep-title">Deliver the session</div>
+              <div class="pstep-desc">Perform your session as normal. Review the patient brief in your Reblooma dashboard beforehand — intake summary and any flagged areas are already there.</div>
+            </div>
+          </div>
+          <div class="path-step">
+            <div class="pstep-num">4</div>
+            <div>
+              <div class="pstep-title">Complete AI SOAP note &amp; superbill</div>
+              <div class="pstep-desc">Input your session findings. AI drafts the full SOAP note in seconds — review, e-sign, and the itemized superbill auto-generates. Bundle delivered to your patient instantly.</div>
+            </div>
+          </div>
         </div>
-        <h3>Insurance infrastructure built in</h3>
-        <p>Superbill generation, OON reimbursement guidance, and FSA/HSA eligibility — handled automatically so you don't have to figure it out.</p>
-      </div>
-      <div class="feat-card reveal" style="transition-delay:0.16s">
-        <div class="feat-icon" style="background: #FDF3EC;">
-          <svg viewBox="0 0 18 18" fill="none">
-            <text x="9" y="13.5" text-anchor="middle" font-size="13" font-weight="500" font-family="Georgia, serif" fill="#C4622A">$</text>
-          </svg>
-        </div>
-        <h3>Pay significantly less</h3>
-        <p>Between insurance reimbursement, FSA/HSA savings, and Reblooma's prepay program, most patients pay a fraction of retail — or nothing at all.</p>
-      </div>
-      <div class="feat-card reveal" style="transition-delay:0.24s">
-        <div class="feat-icon" style="background: #EDE8F6;">
-          <svg viewBox="0 0 18 18" fill="none">
-            <path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9S4.86 16.5 9 16.5 16.5 13.14 16.5 9 13.14 1.5 9 1.5z" fill="#1E3050"/>
-            <path d="M5.5 9.25l2.25 2.25 4.75-4.75" stroke="#E09060" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3>Verified, licensed therapists</h3>
-        <p>Every LMT on Reblooma is credentialed and reviewed. No guesswork, no unlicensed providers.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MISSION -->
-<section class="mission-section">
-  <div class="mission-inner">
-    <div class="tribar reveal" style="width:60px; margin-bottom:2rem; border-radius:2px; overflow:hidden;">
-      <span class="t1"></span><span class="t2"></span><span class="t3"></span>
-    </div>
-    <span class="section-label reveal">Our mission</span>
-    <h2 class="section-h2 reveal">Access to therapeutic care shouldn't depend on who you know or what you can afford.</h2>
-    <p class="reveal">Massage therapy has a long and well-documented role in pain management, injury recovery, and chronic condition care. Yet for most Americans it remains out of reach — either unaffordable, uncovered, or simply unknown as a reimbursable option. Reblooma exists to change that. We built the clinical, billing, and marketplace infrastructure to make licensed massage therapy accessible to anyone with a genuine medical need — and to make it a sustainable, respected practice for the therapists who provide it.</p>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq-section">
-  <div class="section-inner">
-    <span class="section-label reveal">Common questions</span>
-    <h2 class="section-h2 reveal">Everything you need to know.</h2>
-    <div class="faq-list reveal">
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Does my insurance cover massage therapy?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">Many commercial insurance plans offer out-of-network reimbursement for massage therapy when prescribed by a licensed clinician. Reblooma's intake process includes a telehealth evaluation that generates a clinical prescription, which is the key document your insurance needs to process a claim. Coverage varies by plan — we help you understand what you're entitled to before you book.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Do I need a doctor's referral before using Reblooma?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">No. Reblooma connects you directly to a licensed physical therapist via telehealth who evaluates your condition and issues a prescription if appropriate. You don't need to see your primary care doctor first.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Can I use my FSA or HSA to pay for sessions?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">Yes. Because every Reblooma session is backed by a clinical prescription, your sessions qualify as a medical expense eligible for FSA and HSA reimbursement. This can meaningfully reduce your out-of-pocket cost.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How is Reblooma different from booking a massage through Yelp or a spa?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">Reblooma is a healthcare platform, not a booking app. Every therapist on our platform is licensed and credentialed, every session is prescription-backed, and we handle the insurance and billing infrastructure that a spa or booking directory simply doesn't provide.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          I'm a licensed massage therapist. How does Reblooma help my practice?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">Reblooma sends you qualified patients who arrive with clinical prescriptions, handles payment at session completion, and manages billing administration on your behalf. You focus on delivering care — we handle everything else.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Is Reblooma available outside the Bay Area?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">We're launching in the Bay Area first. If you're outside that area, join the waitlist and we'll notify you when we expand to your region.</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- WAITLIST -->
-<section class="waitlist-section" id="waitlist">
-  <div class="waitlist-inner">
-    <h2 class="reveal">Be among the first.</h2>
-    <p class="sub reveal">We're launching in the Bay Area. Join the waitlist and we'll reach out when Reblooma is ready for you.</p>
-    <div class="wl-toggle reveal">
-      <button class="wl-tab active" id="wl-patient" onclick="switchWaitlist('patient')">I'm a patient</button>
-      <button class="wl-tab" id="wl-lmt" onclick="switchWaitlist('lmt')">I'm a therapist</button>
+<!-- ─── SUPPORT PACKAGE ─── -->
+<section class="section bundle-section">
+  <div class="container">
+    <div class="bundle-inner">
+      <div class="reveal">
+        <div class="section-eyebrow bundle-eyebrow">The Support Package™</div>
+        <h2 class="section-title bundle-title">Every session.<br><em class="grad-text">Fully documented.</em></h2>
+        <p class="bundle-sub">
+          Most wellness providers accept FSA/HSA cards — but produce no clinical documentation behind the transaction. Reblooma closes that gap automatically after every session.
+        </p>
+        <div class="bundle-note">
+          <strong>Why documentation matters:</strong> Under IRC Sec 213(d)(1), wellness services qualify for FSA/HSA reimbursement when medically necessary and properly documented. A card swipe alone isn't enough. Your Support Package is your audit-proof evidence.
+        </div>
+      </div>
+
+      <div class="docs-stack reveal reveal-delay">
+        <div class="doc-card">
+          <div class="doc-num doc-n1">1</div>
+          <div style="flex:1;">
+            <div class="doc-title">Letter of Medical Necessity</div>
+            <div class="doc-desc">Clinician-issued, dated before your session. The clinical authorization that qualifies your wellness expense under IRC 213(d)(1).</div>
+          </div>
+          <span class="badge bdg-teal doc-tag" style="font-size:.62rem;">Required</span>
+        </div>
+        <div class="doc-card">
+          <div class="doc-num doc-n2">2</div>
+          <div style="flex:1;">
+            <div class="doc-title">Clinical SOAP Note</div>
+            <div class="doc-desc">Provider-signed with ICD-10 diagnosis and CPT codes. Proves medical treatment occurred — not general wellness.</div>
+          </div>
+          <span class="badge doc-tag" style="background:rgba(142,68,173,.2);color:rgba(180,140,210,.9);font-size:.62rem;">Clinical</span>
+        </div>
+        <div class="doc-card">
+          <div class="doc-num doc-n3">3</div>
+          <div style="flex:1;">
+            <div class="doc-title">Itemized Superbill</div>
+            <div class="doc-desc">Provider NPI, CPT codes (97124 / 97140), date of service, and itemized cost. The exact format FSA/HSA administrators require.</div>
+          </div>
+          <span class="badge bdg-gold doc-tag" style="font-size:.62rem;">Billing</span>
+        </div>
+        <div style="padding:.82rem 1rem;background:rgba(255,255,255,.04);border:.5px solid rgba(255,255,255,.08);border-radius:10px;font-size:.75rem;color:rgba(255,255,255,.42);line-height:1.65;">
+          All three documents are permanently stored in your <strong style="color:rgba(255,255,255,.7);">Patient Organizer</strong> — instantly accessible if your FSA/HSA administrator ever requests documentation.
+        </div>
+      </div>
     </div>
-    <div class="wl-form reveal">
-      <input type="email" id="wl-email" placeholder="Your email address">
-      <button class="btn-amber" onclick="handleWaitlist()">Join waitlist</button>
-    </div>
-    <p class="wl-confirm" id="wl-confirm"></p>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo"><span class="re">Re</span><span class="bloo">bloo</span><span class="ma">ma</span></div>
-    <p class="footer-tagline">Massage therapy is healthcare.</p>
-    <p>Bay Area, CA &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; © 2025 Reblooma</p>
+<!-- ─── WHO IT'S FOR ─── -->
+<section class="section for-section" id="for-you">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow" style="color:var(--purple);">Who it's for</div>
+      <h2 class="section-title">Built for both sides<br><em class="grad-text">of the wellness visit.</em></h2>
+    </div>
+
+    <div class="for-grid">
+
+      <!-- PATIENTS -->
+      <div class="for-card patient-card reveal reveal-delay">
+        <div class="for-icon" style="background:rgba(52,152,219,.1);">🛋️</div>
+        <div class="for-type">For Patients</div>
+        <div class="for-title">Unlock your FSA/HSA for wellness</div>
+        <p class="for-body">You're already paying for massage, sauna, or red light out of pocket. With Reblooma, those same sessions become FSA/HSA-reimbursable — with complete audit-proof documentation delivered automatically after every visit.</p>
+        <div class="for-callout for-callout-teal">
+          <strong>How it works:</strong> Complete a 5-minute pre-checkin on your phone. A licensed clinician issues your Letter of Medical Necessity same-day — making your session a qualified medical expense. Attend as normal, then receive your Support Package in your Patient Organizer: LMN, provider-signed SOAP note, and itemized superbill — ready to submit to your FSA or HSA administrator.
+        </div>
+        <div class="for-checks">
+          <div class="for-check"><div class="check-ic teal-check">✓</div>LMN issued same-day by licensed clinician</div>
+          <div class="for-check"><div class="check-ic teal-check">✓</div>Complete Support Package after every session</div>
+          <div class="for-check"><div class="check-ic teal-check">✓</div>Patient Organizer stores all your documentation</div>
+          <div class="for-check"><div class="check-ic teal-check">✓</div>Submission guides for Wex, Optum, HealthEquity</div>
+          <div class="for-check"><div class="check-ic teal-check">✓</div>One LMN covers 12 months of sessions</div>
+        </div>
+        <a href="#waitlist" class="btn for-cta for-cta-teal">Get my LMN →</a>
+      </div>
+
+      <!-- PRACTITIONERS -->
+      <div class="for-card provider-card reveal reveal-delay-2">
+        <div class="for-icon" style="background:rgba(142,68,173,.1);">💆</div>
+        <div class="for-type">For Wellness Practitioners</div>
+        <div class="for-title">Turn compliance into a growth engine</div>
+        <p class="for-body">Patients who are confident their wellness sessions are FSA/HSA-compliant have a measurably higher rate of new visit bookings and return visits. Reblooma gives you the documentation infrastructure that earns that confidence — meeting IRC Sec 213(d)(1) standards, generated automatically after every session.</p>
+        <div class="for-callout for-callout-purple">
+          <strong>IRC Sec 213(d)(1):</strong> Wellness services qualify as FSA/HSA-eligible medical expenses when medically necessary and properly documented. Reblooma ensures your practice provides patients with complete, audit-proof documentation that satisfies reimbursement requirements — automatically, after every session.
+        </div>
+        <div class="for-checks">
+          <div class="for-check"><div class="check-ic purple-check">✓</div>New patient acquisition from FSA/HSA-ready patients</div>
+          <div class="for-check"><div class="check-ic purple-check">✓</div>Higher session frequency with pre-tax spending</div>
+          <div class="for-check"><div class="check-ic purple-check">✓</div>AI SOAP note completed in under 60 seconds</div>
+          <div class="for-check"><div class="check-ic purple-check">✓</div>Superbill with NPI + CPT codes auto-generated</div>
+          <div class="for-check"><div class="check-ic purple-check">✓</div>Optional directory listing for inbound patient discovery</div>
+        </div>
+        <a href="#waitlist" class="btn for-cta for-cta-purple">Connect my practice →</a>
+      </div>
+
+    </div>
+
+    <!-- Modalities -->
+    <div class="modalities reveal" style="margin-top:1.5rem;">
+      <div class="mod-label">Reblooma supports these modalities:</div>
+      <div class="mod-items">
+        <div class="mod-item">💆 Massage therapy</div>
+        <div class="mod-item">🌡️ Infrared sauna</div>
+        <div class="mod-item">💡 Red light therapy</div>
+        <div class="mod-item">🧊 Cold plunge</div>
+        <div class="mod-item">✦ More coming</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WAITLIST ─── -->
+<section class="section waitlist-section" id="waitlist">
+  <div class="container">
+    <div class="waitlist-inner reveal">
+
+      <span class="badge bdg-grad" style="margin-bottom:1.1rem;display:inline-flex;">
+        Now accepting early applications
+      </span>
+      <h2 class="section-title" style="margin-bottom:.6rem;">
+        Be first to bloom.<br><em class="grad-text">Join the waitlist.</em>
+      </h2>
+      <p class="section-sub" style="text-align:center;">
+        Reblooma is onboarding its first wave of patients and practitioners in the Bay Area. Join the waitlist and we'll reach out when we're ready for you.
+      </p>
+
+      <!-- Tabs -->
+      <div class="wl-tabs">
+        <button class="wl-tab active" onclick="switchTab('patient',this)" id="tab-patient">I'm a Patient</button>
+        <button class="wl-tab" onclick="switchTab('provider',this)" id="tab-provider">I'm a Practitioner</button>
+      </div>
+
+      <!-- Patient form -->
+      <form class="wl-form" id="form-patient" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="fg"><label>First name</label><input type="text" placeholder="Sarah" required></div>
+          <div class="fg"><label>Last name</label><input type="text" placeholder="Johnson" required></div>
+        </div>
+        <div class="fg"><label>Email address</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="fg">
+          <label>FSA / HSA administrator (if known)</label>
+          <select>
+            <option value="">Select your administrator</option>
+            <option>Wex</option>
+            <option>Optum Bank</option>
+            <option>HealthEquity</option>
+            <option>Fidelity</option>
+            <option>HSA Bank</option>
+            <option>Not sure</option>
+            <option>I don't have FSA/HSA</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>What wellness service are you interested in?</label>
+          <select>
+            <option value="">Select a service</option>
+            <option>Massage therapy</option>
+            <option>Infrared sauna</option>
+            <option>Red light therapy</option>
+            <option>Cold plunge / cryotherapy</option>
+            <option>Multiple services</option>
+          </select>
+        </div>
+        <button type="submit" class="wl-submit">
+          Join the patient waitlist →
+        </button>
+        <p class="wl-note">No credit card required. We'll notify you when Reblooma is available in your area.</p>
+      </form>
+
+      <!-- Provider form -->
+      <form class="wl-form" id="form-provider" style="display:none;" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="fg"><label>First name</label><input type="text" placeholder="Marcus" required></div>
+          <div class="fg"><label>Last name</label><input type="text" placeholder="Reeves" required></div>
+        </div>
+        <div class="fg"><label>Business / Practice name</label><input type="text" placeholder="Serenity Wellness or your name" required></div>
+        <div class="fg"><label>Email address</label><input type="email" placeholder="you@yourpractice.com" required></div>
+        <div class="fg">
+          <label>Practitioner type</label>
+          <select required>
+            <option value="">Select your type</option>
+            <option>Licensed Massage Therapist (LMT)</option>
+            <option>Massage therapy clinic</option>
+            <option>Infrared sauna studio</option>
+            <option>Red light therapy clinic</option>
+            <option>Wellness spa (multi-service)</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>How do you currently handle FSA/HSA payments?</label>
+          <select>
+            <option value="">Select an option</option>
+            <option>I can't currently accept FSA/HSA</option>
+            <option>I accept FSA/HSA but without documentation</option>
+            <option>I have a workaround but it's complicated</option>
+            <option>My patients ask and I have to say no</option>
+          </select>
+        </div>
+        <button type="submit" class="wl-submit">
+          Join as a practitioner →
+        </button>
+        <p class="wl-note">We'll be in touch within 48 hours to discuss onboarding.</p>
+      </form>
+
+      <!-- Success state -->
+      <div class="wl-success" id="wl-success">
+        <div class="success-icon">✓</div>
+        <div class="success-title">You're on the list!</div>
+        <p class="success-sub">
+          We'll reach out as soon as Reblooma is ready for you.<br>
+          In the meantime, follow us for updates.
+        </p>
+      </div>
+
+      <!-- Social proof -->
+      <div class="social-proof" id="social-proof">
+        <div class="sp-avatars">
+          <div class="sp-av" style="background:var(--teal);">LM</div>
+          <div class="sp-av" style="background:var(--purple);">SK</div>
+          <div class="sp-av" style="background:linear-gradient(135deg,var(--teal),var(--purple));">JW</div>
+        </div>
+        <span>Join 200+ patients and practitioners already on the waitlist</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="section faq-section" id="faq">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow" style="color:var(--teal);">FAQ</div>
+      <h2 class="section-title">Common questions.</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item reveal">
+        <div class="faq-q">Do I need a doctor's referral to use Reblooma?</div>
+        <div class="faq-a">No referral needed. Reblooma's telehealth partner reviews your clinical intake and issues the Letter of Medical Necessity directly — no prior physician visit required.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay">
+        <div class="faq-q">What if my therapist already accepts FSA/HSA cards?</div>
+        <div class="faq-a">A card working at checkout doesn't mean the claim is audit-proof. Most providers lack clinical documentation — no CPT codes, no diagnosis, no SOAP note. Reblooma ensures your claim holds up if your FSA administrator ever requests documentation.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">How does Reblooma work for practitioners who already have members?</div>
+        <div class="faq-a">You simply send your existing patients a Reblooma pre-checkin link before their appointment. They complete a 5-minute intake, receive their LMN, and can now pay with FSA/HSA. You don't need to change your booking system or workflow — just add Reblooma as a payment option.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay">
+        <div class="faq-q">How long does the LMN process take?</div>
+        <div class="faq-a">Most LMNs are issued same-day — typically within 2–4 hours of completing the pre-checkin intake. Your LMN covers all sessions for 12 months, so you only go through the process once per year.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Which FSA/HSA administrators does Reblooma support?</div>
+        <div class="faq-a">Your Support Package meets the documentation standards required by all major administrators — Wex, Optum Bank, HealthEquity, Fidelity, HSA Bank, and others. We also provide tailored submission guides for each administrator.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay">
+        <div class="faq-q">Is Reblooma only for massage therapy?</div>
+        <div class="faq-a">No — Reblooma supports massage therapy, infrared sauna, red light therapy, cold plunge, and other wellness modalities. If you're a wellness operator in a different category, reach out and we'll let you know our timeline for your modality.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-row">
+        <span class="footer-brand-name">Reblooma</span>
+      </div>
+      <p class="footer-tagline">FSA/HSA compliance infrastructure for wellness providers. Bay Area &amp; expanding.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="#how-it-works">How it works</a>
+        <a href="#for-you">For patients</a>
+        <a href="#for-you">For providers</a>
+        <a href="#waitlist">Join waitlist</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">HIPAA notice</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Reblooma, Inc. All rights reserved.</span>
+    <div class="footer-legal-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">HIPAA</a>
+    </div>
   </div>
 </footer>
 
+<!-- ─── SCRIPTS ─── -->
 <script>
-  // Tab switching
-  function switchTab(lane) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-    document.getElementById('tab-' + lane).classList.add('active');
-    document.getElementById('pane-' + lane).classList.add('active');
-  }
+// Tab switching
+function switchTab(type, btn) {
+  document.querySelectorAll('.wl-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('form-patient').style.display = type === 'patient' ? 'flex' : 'none';
+  document.getElementById('form-provider').style.display = type === 'provider' ? 'flex' : 'none';
+  document.getElementById('form-patient').style.flexDirection = 'column';
+  document.getElementById('form-provider').style.flexDirection = 'column';
+}
 
-  // Waitlist toggle
-  var wlType = 'patient';
-  function switchWaitlist(type) {
-    wlType = type;
-    document.querySelectorAll('.wl-tab').forEach(b => b.classList.remove('active'));
-    document.getElementById('wl-' + type).classList.add('active');
-    document.getElementById('wl-confirm').textContent = '';
-  }
+// Form submission
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const success = document.getElementById('wl-success');
+  const social = document.getElementById('social-proof');
+  const tabs = document.querySelector('.wl-tabs');
 
-  function handleWaitlist() {
-    var email = document.getElementById('wl-email').value.trim();
-    var confirm = document.getElementById('wl-confirm');
-    if (!email || !email.includes('@')) {
-      confirm.textContent = 'Please enter a valid email address.';
-      confirm.style.color = '#EDB888';
-      return;
+  form.style.opacity = '0';
+  form.style.transform = 'translateY(-8px)';
+  form.style.transition = 'all .3s ease';
+
+  setTimeout(() => {
+    form.style.display = 'none';
+    tabs.style.display = 'none';
+    success.style.display = 'block';
+    success.style.animation = 'fadeUp .5s ease both';
+    social.style.display = 'none';
+  }, 300);
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
     }
-    var label = wlType === 'lmt' ? 'therapist' : 'patient';
-    confirm.textContent = "You're on the list as a " + label + ". We'll be in touch soon.";
-    confirm.style.color = '#F5DCC8';
-    document.getElementById('wl-email').value = '';
-  }
+  });
+}, { threshold: 0.12 });
 
-  // FAQ accordion
-  function toggleFaq(btn) {
-    var item = btn.parentElement;
-    var isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Mobile menu
-  function toggleMenu() {
-    document.getElementById('mobile-menu').classList.toggle('open');
+// Smooth nav background on scroll
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 20) {
+    nav.style.background = 'rgba(236,240,241,0.97)';
+    nav.style.boxShadow = '0 1px 12px rgba(44,62,80,.08)';
+  } else {
+    nav.style.background = 'rgba(236,240,241,0.9)';
+    nav.style.boxShadow = 'none';
   }
-
-  // Scroll reveal
-  var reveals = document.querySelectorAll('.reveal');
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(function(el) { observer.observe(el); });
+});
 </script>
 </body>
 </html>
