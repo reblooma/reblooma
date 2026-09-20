@@ -37,6 +37,31 @@ Sections alternate `#e4deda` → `#fcf9f6` → `#f3f0ed` to separate ideas witho
 `opacity-42` and `opacity-62` are custom steps in the Tailwind config. They exist because the
 Stitch exports use them; keep using 42 / 62 / 80 rather than inventing new ones.
 
+### Brand assets
+
+The files are in `assets/brand/`. **Pick by background; there is nothing to
+resolve at render time.**
+
+| File | What it is | On |
+|---|---|---|
+| `reblooma-mark.png` | The lotus alone, gradient | anything &mdash; the gradient reads on light and dark |
+| `reblooma-lockup-dark.png` | Lotus + wordmark, dark wordmark, padded | **light** backgrounds |
+| `reblooma-logo.png` | The same lockup, tightly cropped | light backgrounds, where padding wastes space |
+| `reblooma-wordmark-light.png` | Wordmark only, white, 264&times;44 | **dark** backgrounds only |
+
+**The white wordmark is white**, and a surface that put it on a white card
+rendered an invisible logo. That is the whole rule.
+
+**The wordmark is one solid colour and carries no accent letter.** The colour
+lives in the lotus. A rule that would have turned one letter teal was deleted on
+20 September; no markup had ever used it.
+
+**Still missing:** a light LOCKUP &mdash; lotus plus white wordmark &mdash; for
+dark heroes and email headers. Only the wordmark-alone light version exists, and
+at 264&times;44 it does not scale.
+
+---
+
 ### The one accent
 
 ```css
