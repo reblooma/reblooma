@@ -39,26 +39,27 @@ Stitch exports use them; keep using 42 / 62 / 80 rather than inventing new ones.
 
 ### Brand assets
 
-The files are in `assets/brand/`. **Pick by background; there is nothing to
-resolve at render time.**
+In `assets/brand/`. **The rule is the filename: `-colour` and `-ink` go on light,
+`-white` goes on dark.** Nothing to work out at render time.
 
-| File | What it is | On |
+| File | What it is | Put it on |
 |---|---|---|
-| `reblooma-mark.png` | The lotus alone, gradient | anything &mdash; the gradient reads on light and dark |
-| `reblooma-lockup-dark.png` | Lotus + wordmark, dark wordmark, padded | **light** backgrounds |
-| `reblooma-logo.png` | The same lockup, tightly cropped | light backgrounds, where padding wastes space |
-| `reblooma-wordmark-light.png` | Wordmark only, white, 264&times;44 | **dark** backgrounds only |
+| `logo/reblooma-logo-colour.png` | Lockup: gradient lotus + dark wordmark | **Light** backgrounds |
+| `logo/reblooma-logo-white.png` | Lockup: all white | **Dark** backgrounds, photos, the gradient |
+| `logo/reblooma-lotus-colour.png` | Mark alone, gradient | Anything |
+| `logo/reblooma-lotus-ink.png` | Mark alone, ink | Light, where the gradient would be noise |
+| `logo/reblooma-lotus-white.png` | Mark alone, white | Dark |
 
-**The white wordmark is white**, and a surface that put it on a white card
-rendered an invisible logo. That is the whole rule.
+`gradient/` holds the accent as artwork &mdash; a background, a strip and an
+underline &mdash; for an email, a PDF or a social post, where a CSS gradient is
+not available. The spending rule below still applies to them.
 
 **The wordmark is one solid colour and carries no accent letter.** The colour
 lives in the lotus. A rule that would have turned one letter teal was deleted on
 20 September; no markup had ever used it.
 
-**Still missing:** a light LOCKUP &mdash; lotus plus white wordmark &mdash; for
-dark heroes and email headers. Only the wordmark-alone light version exists, and
-at 264&times;44 it does not scale.
+**This has already caused one bug.** A white wordmark on a white card rendered an
+invisible logo, which is why these are named by the background they belong on.
 
 ---
 
