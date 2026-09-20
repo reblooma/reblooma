@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reblooma — Insurance-Covered Massage Therapy in the Bay Area</title>
+<meta name="description" content="Reblooma connects patients to licensed massage therapists with integrated insurance reimbursement. Get a telehealth prescription, book a session, and let us handle the superbill. Launching in the Bay Area.">
+<meta property="og:title" content="Massage therapy is healthcare. We make it billable.">
+<meta property="og:description" content="Reblooma is a healthcare marketplace connecting patients to licensed massage therapists with insurance infrastructure built in. Join the waitlist.">
+<meta name="theme-color" content="#152035">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum: #1A1035;
+    --violet: #2E1F5E;
+    --purple: #4A357A;
+    --lavender: #7B64B0;
+    --lilac: #AA93D4;
+    --pale-lav: #D4C8ED;
+    --fog-lav: #EDE8F6;
+    --ink: #0B1222;
+    --navy: #152035;
+    --navy-mid: #1E3050;
+    --steel: #2E4A70;
+    --sky: #4A6E96;
+    --mist: #8AAEC8;
+    --pale-blue: #C2D8EA;
+    --fog: #EBF1F7;
+    --amber: #C4622A;
+    --ember: #D4784A;
+    --glow: #E09060;
+    --peach: #EDB888;
+    --pale-amb: #F5DCC8;
+    --white: #FDFCFF;
+    --bd: rgba(30,48,80,0.13);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--fog);
+    color: var(--navy);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── TRICOLOR BAR ── */
+  .tribar {
+    display: flex;
+    height: 4px;
+    width: 100%;
+  }
+  .tribar span { flex: 1; display: block; }
+  .tribar .t1 { background: var(--lavender); }
+  .tribar .t2 { background: var(--navy-mid); }
+  .tribar .t3 { background: var(--ember); }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    border-bottom: 0.5px solid rgba(170,147,212,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+  .logo .re { color: var(--lavender); }
+  .logo .bloo { color: var(--mist); }
+  .logo .ma { color: var(--amber); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--mist);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--pale-lav); }
+
+  .btn-amber {
+    background: var(--amber);
+    color: var(--white);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-amber:hover { background: var(--ember); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--pale-lav);
+    border: 0.5px solid var(--purple);
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--lavender); background: rgba(123,100,176,0.1); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--pale-lav);
+    transition: all 0.3s;
+  }
+
+  .mobile-menu {
+    display: none;
+    background: var(--violet);
+    padding: 1.5rem 2rem;
+    border-top: 0.5px solid rgba(170,147,212,0.15);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block;
+    color: var(--lilac);
+    text-decoration: none;
+    font-size: 16px;
+    padding: 0.75rem 0;
+    border-bottom: 0.5px solid rgba(170,147,212,0.1);
+  }
+  .mobile-menu .btn-amber { margin-top: 1.25rem; width: 100%; text-align: center; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(180deg, #3A2468 0%, #2E1F5E 15%, #1E2848 30%, #152035 45%, #0F1828 60%, #18202E 72%, #2A2018 84%, #3C2A18 92%, #4A3020 100%);
+    padding: 7rem 2rem 6rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 200%;
+    background: radial-gradient(ellipse at 60% 30%, rgba(123,100,176,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 70%, rgba(196,98,42,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--glow);
+    background: rgba(224,144,96,0.12);
+    border: 0.5px solid rgba(224,144,96,0.25);
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 58px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--peach);
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--lilac);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .hero-actions .btn-amber,
+  .hero-actions .btn-outline {
+    padding: 14px 30px;
+    font-size: 15px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STAT BAR ── */
+  .stat-bar {
+    background: var(--white);
+    border-bottom: 0.5px solid var(--bd);
+  }
+  .stat-bar-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.75rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--peach);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .stat-label {
+    display: block;
+    font-size: 13px;
+    color: var(--steel);
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .section-h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 2.5rem;
+  }
+  .tab-btn {
+    padding: 9px 22px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border: 0.5px solid var(--bd);
+    background: transparent;
+    color: var(--steel);
+    transition: all 0.2s;
+  }
+  .tab-btn.active {
+    background: var(--amber);
+    color: var(--white);
+    border-color: var(--amber);
+    font-weight: 500;
+  }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 1.5rem; max-width: 620px; }
+  .step {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: var(--white);
+    border: 0.5px solid var(--bd);
+    border-left: 3px solid var(--sky);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    transition: border-left-color 0.2s, box-shadow 0.2s;
+  }
+  .step:hover { border-left-color: var(--amber); box-shadow: 0 4px 20px rgba(30,48,80,0.07); }
+  .step.lmt-step { border-left-color: var(--lavender); }
+  .step.lmt-step:hover { border-left-color: var(--peach); }
+  .step-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--violet);
+    color: var(--pale-lav);
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-family: 'Fraunces', serif;
+  }
+  .step-body h4 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 5px;
+  }
+  .step-body p {
+    font-size: 14px;
+    color: var(--steel);
+    line-height: 1.6;
+  }
+
+  .pull-quote {
+    margin-top: 2rem;
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.5rem;
+    background: var(--fog-lav);
+    border-radius: 0 8px 8px 0;
+    max-width: 560px;
+  }
+  .pull-quote.lmt { border-left-color: var(--lavender); }
+  .pull-quote p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 16px;
+    color: var(--navy-mid);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .pull-quote span { font-size: 12px; color: var(--sky); }
+
+  /* ── FEATURE CARDS ── */
+  .how-section { background: var(--fog); }
+  .why-section { background: var(--white); }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  .feat-card {
+    background: var(--white);
+    border: 0.5px solid var(--bd);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .feat-card:hover {
+    border-color: var(--purple);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(30,48,80,0.09);
+  }
+  .feat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--fog-lav);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .feat-icon svg { width: 18px; height: 18px; }
+  .feat-card h3 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .feat-card p {
+    font-size: 14px;
+    color: var(--steel);
+    line-height: 1.65;
+  }
+
+  /* ── MISSION ── */
+  .mission-section {
+    background: var(--navy);
+    padding: 5rem 2rem;
+  }
+  .mission-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .mission-section .section-label { color: var(--glow); }
+  .mission-section .section-h2 {
+    color: var(--white);
+    font-size: 38px;
+    margin-bottom: 1.5rem;
+  }
+  .mission-section p {
+    font-size: 17px;
+    color: var(--lilac);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ── FAQ ── */
+  .faq-section { background: var(--fog-lav); }
+  .faq-list { max-width: 720px; }
+  .faq-item {
+    border-bottom: 0.5px solid rgba(74,53,122,0.2);
+  }
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 1.25rem 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.2s;
+  }
+  .faq-q:hover { color: var(--purple); }
+  .faq-q .faq-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 0.5px solid var(--lavender);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--lavender);
+    font-size: 14px;
+    transition: transform 0.25s, background 0.2s;
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    background: var(--lavender);
+    color: var(--white);
+  }
+  .faq-a {
+    font-size: 14px;
+    color: var(--steel);
+    line-height: 1.7;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.2s;
+    border-left: 3px solid var(--purple);
+    padding-left: 0;
+    margin-left: 0;
+    border-left-width: 0;
+  }
+  .faq-item.open .faq-a {
+    max-height: 200px;
+    padding: 0 0 1.25rem 1.25rem;
+    border-left-width: 3px;
+  }
+
+  /* ── WAITLIST ── */
+  .waitlist-section {
+    background: var(--violet);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .waitlist-inner { max-width: 540px; margin: 0 auto; }
+  .waitlist-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .waitlist-section .sub {
+    font-size: 16px;
+    color: var(--lilac);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .wl-toggle {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .wl-tab {
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border: 0.5px solid var(--purple);
+    background: transparent;
+    color: var(--lilac);
+    transition: all 0.2s;
+  }
+  .wl-tab.active {
+    background: var(--amber);
+    color: var(--white);
+    border-color: var(--amber);
+    font-weight: 500;
+  }
+  .wl-form {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .wl-form input {
+    flex: 1;
+    min-width: 220px;
+    padding: 13px 18px;
+    border-radius: 6px;
+    border: 0.5px solid var(--pale-blue);
+    background: var(--navy-mid);
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .wl-form input::placeholder { color: var(--mist); }
+  .wl-form input:focus { border-color: var(--lavender); }
+  .wl-form .btn-amber { padding: 13px 24px; }
+  .wl-confirm {
+    font-size: 13px;
+    color: var(--pale-amb);
+    margin-top: 1rem;
+    min-height: 20px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 2.5rem 2rem;
+    border-top: 0.5px solid rgba(170,147,212,0.1);
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 400; }
+  .footer-logo .re { color: var(--lavender); }
+  .footer-logo .bloo { color: var(--mist); }
+  .footer-logo .ma { color: var(--ember); }
+  footer p { font-size: 13px; color: var(--steel); }
+  footer a { color: var(--steel); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--lilac); }
+  .footer-tagline {
+    font-size: 13px;
+    color: var(--lavender);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero h1 { font-size: 36px; letter-spacing: -1px; }
+    .hero-sub { font-size: 16px; }
+    .stat-bar-inner { gap: 2.5rem; }
+    .stat-num { font-size: 30px; }
+    .section-h2 { font-size: 30px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .mission-section .section-h2 { font-size: 28px; }
+    .waitlist-section h2 { font-size: 30px; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .tabs { overflow-x: auto; padding-bottom: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="tribar"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div>
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="re">Re</span><span class="bloo">bloo</span><span class="ma">ma</span></a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">For patients</a></li>
+      <li><a href="#how-it-works" onclick="setTimeout(()=>switchTab('lmt'),100)">For therapists</a></li>
+      <li><a href="notetaker.html">AI Notetaker</a></li>
+      <li><a href="#waitlist" class="btn-amber">Join waitlist</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#how-it-works" onclick="toggleMenu()">For patients</a>
+    <a href="#how-it-works" onclick="toggleMenu(); setTimeout(()=>switchTab('lmt'),200)">For therapists</a>
+    <a href="notetaker.html" onclick="toggleMenu()">AI Notetaker</a>
+    <a href="#waitlist" class="btn-amber" onclick="toggleMenu()">Join waitlist</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Healthcare marketplace · Bay Area</div>
+    <h1>Massage therapy is healthcare.<br><em>We make it billable.</em></h1>
+    <p class="hero-sub">Reblooma connects patients to licensed massage therapists with integrated insurance infrastructure — so you spend less time worrying about cost and more time recovering.</p>
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-amber">Get early access</a>
+      <a href="#how-it-works" class="btn-outline" onclick="setTimeout(()=>switchTab('lmt'),100)">I'm a therapist</a>
+    </div>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div class="stat reveal">
+      <span class="stat-num">65M+</span>
+      <span class="stat-label">Americans with chronic pain</span>
+    </div>
+    <div class="stat reveal" style="transition-delay:0.1s">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Up to 100% covered for eligible patients</span>
+    </div>
+    <div class="stat reveal" style="transition-delay:0.2s">
+      <span class="stat-num">45%</span>
+      <span class="stat-label">Effective savings vs retail</span>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works">
+  <div class="section-inner">
+    <span class="section-label reveal">How it works</span>
+    <h2 class="section-h2 reveal">Your care. Your coverage.</h2>
+
+    <div class="tabs reveal">
+      <button class="tab-btn active" id="tab-patient" onclick="switchTab('patient')">For patients</button>
+      <button class="tab-btn" id="tab-lmt" onclick="switchTab('lmt')">For therapists</button>
+    </div>
+
+    <div class="tab-pane active" id="pane-patient">
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Tell us what's going on</h4>
+            <p>Complete a short symptom intake. We'll understand your condition and what kind of care you need.</p>
+          </div>
+        </div>
+        <div class="step reveal" style="transition-delay:0.1s">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Get a telehealth evaluation</h4>
+            <p>A licensed clinician evaluates you via telehealth and issues a massage therapy prescription. Billable to your insurance as a clinical visit.</p>
+          </div>
+        </div>
+        <div class="step reveal" style="transition-delay:0.15s">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Book your therapist</h4>
+            <p>Browse verified licensed massage therapists in your area. Book directly through Reblooma.</p>
+          </div>
+        </div>
+        <div class="step reveal" style="transition-delay:0.2s">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>We handle the paperwork</h4>
+            <p>Reblooma generates your superbill automatically. Submit to insurance for reimbursement, or use your FSA/HSA — your prescription makes it eligible.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pull-quote reveal" style="transition-delay:0.25s">
+        <p>"I had no idea my insurance could help cover massage. Reblooma made it simple — I just showed up."</p>
+        <span>Early access patient, Bay Area</span>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="pane-lmt">
+      <div class="steps">
+        <div class="step lmt-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Apply to join</h4>
+            <p>We verify your license and credentials. Takes minutes, not weeks.</p>
+          </div>
+        </div>
+        <div class="step lmt-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Receive qualified patients</h4>
+            <p>Every Reblooma patient arrives with a clinical prescription. No cold inquiries, no explaining why massage is medically legitimate. No superbill generation needed — our <a href="notetaker.html" style="color:var(--peach);text-decoration:underline;text-decoration-color:rgba(237,184,136,0.4);">AI notetaker</a> captures the areas you treated and produces the superbill automatically.</p>
+          </div>
+        </div>
+        <div class="step lmt-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Get paid at session completion</h4>
+            <p>No chasing payments, no insurance claims on your end. Reblooma handles billing infrastructure so you focus on care.</p>
+          </div>
+        </div>
+        <div class="step lmt-step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Grow your practice</h4>
+            <p>New to the field? Our launch program helps you build a patient base from day one with platform support and steady booking flow.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pull-quote lmt">
+        <p>"Finally a platform that treats massage therapy as what it is — legitimate medical care."</p>
+        <span>Licensed massage therapist, San Jose</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY REBLOOMA -->
+<section class="why-section">
+  <div class="section-inner">
+    <span class="section-label reveal">Why Reblooma</span>
+    <h2 class="section-h2 reveal"><span style="color:#7B64B0;">Re</span><span style="color:#1E3050;">bloo</span><span style="color:#C4622A;">ma</span> — built differently,<br>for a reason.</h2>
+    <div class="cards-grid">
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background: #EDE8F6;">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9S4.86 16.5 9 16.5 16.5 13.14 16.5 9 13.14 1.5 9 1.5z" fill="#7B64B0"/>
+            <path d="M9 4.5v5.25l3 1.75" stroke="#D4C8ED" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Prescription-backed care</h3>
+        <p>Every session starts with a licensed clinical evaluation, making your massage medically documentable and insurance-eligible.</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:0.08s">
+        <div class="feat-icon" style="background: #EBF1F7;">
+          <svg viewBox="0 0 18 18" fill="none">
+            <rect x="2.25" y="3" width="13.5" height="12" rx="1.5" fill="#1E3050"/>
+            <rect x="4.5" y="6" width="9" height="1.2" rx="0.6" fill="#8AAEC8"/>
+            <rect x="4.5" y="8.4" width="6" height="1.2" rx="0.6" fill="#8AAEC8"/>
+            <rect x="4.5" y="10.8" width="7.5" height="1.2" rx="0.6" fill="#8AAEC8"/>
+          </svg>
+        </div>
+        <h3>Insurance infrastructure built in</h3>
+        <p>Superbill generation, OON reimbursement guidance, and FSA/HSA eligibility — handled automatically so you don't have to figure it out.</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:0.16s">
+        <div class="feat-icon" style="background: #FDF3EC;">
+          <svg viewBox="0 0 18 18" fill="none">
+            <text x="9" y="13.5" text-anchor="middle" font-size="13" font-weight="500" font-family="Georgia, serif" fill="#C4622A">$</text>
+          </svg>
+        </div>
+        <h3>Pay significantly less</h3>
+        <p>Between insurance reimbursement, FSA/HSA savings, and Reblooma's prepay program, most patients pay a fraction of retail — or nothing at all.</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:0.24s">
+        <div class="feat-icon" style="background: #EDE8F6;">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9S4.86 16.5 9 16.5 16.5 13.14 16.5 9 13.14 1.5 9 1.5z" fill="#1E3050"/>
+            <path d="M5.5 9.25l2.25 2.25 4.75-4.75" stroke="#E09060" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Verified, licensed therapists</h3>
+        <p>Every LMT on Reblooma is credentialed and reviewed. No guesswork, no unlicensed providers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission-section">
+  <div class="mission-inner">
+    <div class="tribar reveal" style="width:60px; margin-bottom:2rem; border-radius:2px; overflow:hidden;">
+      <span class="t1"></span><span class="t2"></span><span class="t3"></span>
+    </div>
+    <span class="section-label reveal">Our mission</span>
+    <h2 class="section-h2 reveal">Access to therapeutic care shouldn't depend on who you know or what you can afford.</h2>
+    <p class="reveal">Massage therapy has a long and well-documented role in pain management, injury recovery, and chronic condition care. Yet for most Americans it remains out of reach — either unaffordable, uncovered, or simply unknown as a reimbursable option. Reblooma exists to change that. We built the clinical, billing, and marketplace infrastructure to make licensed massage therapy accessible to anyone with a genuine medical need — and to make it a sustainable, respected practice for the therapists who provide it.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-inner">
+    <span class="section-label reveal">Common questions</span>
+    <h2 class="section-h2 reveal">Everything you need to know.</h2>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Does my insurance cover massage therapy?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Many commercial insurance plans offer out-of-network reimbursement for massage therapy when prescribed by a licensed clinician. Reblooma's intake process includes a telehealth evaluation that generates a clinical prescription, which is the key document your insurance needs to process a claim. Coverage varies by plan — we help you understand what you're entitled to before you book.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need a doctor's referral before using Reblooma?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">No. Reblooma connects you directly to a licensed physical therapist via telehealth who evaluates your condition and issues a prescription if appropriate. You don't need to see your primary care doctor first.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I use my FSA or HSA to pay for sessions?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Yes. Because every Reblooma session is backed by a clinical prescription, your sessions qualify as a medical expense eligible for FSA and HSA reimbursement. This can meaningfully reduce your out-of-pocket cost.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How is Reblooma different from booking a massage through Yelp or a spa?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Reblooma is a healthcare platform, not a booking app. Every therapist on our platform is licensed and credentialed, every session is prescription-backed, and we handle the insurance and billing infrastructure that a spa or booking directory simply doesn't provide.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          I'm a licensed massage therapist. How does Reblooma help my practice?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Reblooma sends you qualified patients who arrive with clinical prescriptions, handles payment at session completion, and manages billing administration on your behalf. You focus on delivering care — we handle everything else.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is Reblooma available outside the Bay Area?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">We're launching in the Bay Area first. If you're outside that area, join the waitlist and we'll notify you when we expand to your region.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist-section" id="waitlist">
+  <div class="waitlist-inner">
+    <h2 class="reveal">Be among the first.</h2>
+    <p class="sub reveal">We're launching in the Bay Area. Join the waitlist and we'll reach out when Reblooma is ready for you.</p>
+    <div class="wl-toggle reveal">
+      <button class="wl-tab active" id="wl-patient" onclick="switchWaitlist('patient')">I'm a patient</button>
+      <button class="wl-tab" id="wl-lmt" onclick="switchWaitlist('lmt')">I'm a therapist</button>
+    </div>
+    <div class="wl-form reveal">
+      <input type="email" id="wl-email" placeholder="Your email address">
+      <button class="btn-amber" onclick="handleWaitlist()">Join waitlist</button>
+    </div>
+    <p class="wl-confirm" id="wl-confirm"></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><span class="re">Re</span><span class="bloo">bloo</span><span class="ma">ma</span></div>
+    <p class="footer-tagline">Massage therapy is healthcare.</p>
+    <p>Bay Area, CA &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; © 2025 Reblooma</p>
+  </div>
+</footer>
+
+<script>
+  // Tab switching
+  function switchTab(lane) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + lane).classList.add('active');
+    document.getElementById('pane-' + lane).classList.add('active');
+  }
+
+  // Waitlist toggle
+  var wlType = 'patient';
+  function switchWaitlist(type) {
+    wlType = type;
+    document.querySelectorAll('.wl-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('wl-' + type).classList.add('active');
+    document.getElementById('wl-confirm').textContent = '';
+  }
+
+  function handleWaitlist() {
+    var email = document.getElementById('wl-email').value.trim();
+    var confirm = document.getElementById('wl-confirm');
+    if (!email || !email.includes('@')) {
+      confirm.textContent = 'Please enter a valid email address.';
+      confirm.style.color = '#EDB888';
+      return;
+    }
+    var label = wlType === 'lmt' ? 'therapist' : 'patient';
+    confirm.textContent = "You're on the list as a " + label + ". We'll be in touch soon.";
+    confirm.style.color = '#F5DCC8';
+    document.getElementById('wl-email').value = '';
+  }
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    var item = btn.parentElement;
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  // Scroll reveal
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(function(el) { observer.observe(el); });
+</script>
+</body>
+</html>
