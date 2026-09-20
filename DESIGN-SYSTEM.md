@@ -1,5 +1,15 @@
 # Reblooma design system — "Matte Stone"
 
+> **Two documents carry this design language.** This one governs the **public
+> site**. Its sibling governs the **product** &mdash; the portals, wireframes and
+> screen specs &mdash; and lives at `docs/design/DESIGN_SYSTEM.md` in the
+> `reblooma-platform-mvp` repo (note the underscore). They agree on the feel and
+> the type and **differ on tokens**, deliberately.
+>
+> **Brand assets are canonical in the product repo** at `docs/design/assets/`;
+> `assets/brand/` here is a copy. Register row 221.
+
+
 The single reference for building new Reblooma pages. Everything here is already implemented in
 `assets/tailwind.config.js` (tokens), `assets/site.css` (components) and `assets/site.js` (behaviour).
 
