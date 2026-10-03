@@ -5,7 +5,7 @@
 // While it's empty the form runs in test mode: it works end to end but saves nothing.
 // ---------------------------------------------------------------------------
 window.REBLOOMA = Object.assign({
-  waitlistWebhook: '', // e.g. 'https://services.leadconnectorhq.com/hooks/<location>/webhook-trigger/<id>'
+  waitlistWebhook: 'https://services.leadconnectorhq.com/hooks/JfZHzNBRrTZ3bnJK63IB/webhook-trigger/3lzkGCysmOixleeirWVI', // e.g. 'https://services.leadconnectorhq.com/hooks/<location>/webhook-trigger/<id>'
   // Where "Start my consultation" sends patients once their details are captured.
   consultationUrl: 'https://drb.ai/and/reblooma',
 }, window.REBLOOMA || {});
@@ -22,7 +22,7 @@ window.REBLOOMA = Object.assign({
   }
 
   // ---------- attribution: keep the first-touch UTMs for the whole visit ----------
-  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid', 'ref', 'partner'];
   (function captureAttribution() {
     if (readJSON('rb_attr')) return;
     var params = new URLSearchParams(location.search);
@@ -52,53 +52,44 @@ window.REBLOOMA = Object.assign({
       // honeypot — real people never see or fill this
       '<input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">' +
 
-      // Step 1 — who
-      '<div class="wl-step" data-step="1">' +
-        '<p class="font-label-caps text-label-caps text-secondary mb-2 uppercase tracking-widest" data-wl-progress></p>' +
-        '<h3 id="wl-title" class="font-headline-sm text-headline-sm text-primary mb-2">Join the Reblooma waitlist</h3>' +
-        '<p class="text-on-surface-variant mb-6">Which describes you?</p>' +
-        '<div class="grid grid-cols-2 gap-4 mb-2">' +
-          '<button type="button" class="wl-choice btn-secondary py-4 hover:bg-primary/5" data-role="patient" aria-pressed="false">Patient</button>' +
-          '<button type="button" class="wl-choice btn-secondary py-4 hover:bg-primary/5" data-role="practitioner" aria-pressed="false">Practitioner</button>' +
-        '</div>' +
-      '</div>' +
+      // One page: everything at once
+      '<div class="wl-step" data-step="form">' +
+        '<h3 id="wl-title" class="font-headline-sm text-headline-sm text-primary mb-6" data-wl-title>Join the Reblooma waitlist</h3>' +
 
-      // Step 2 — contact
-      '<div class="wl-step hidden" data-step="2">' +
-        '<p class="font-label-caps text-label-caps text-secondary mb-2 uppercase tracking-widest" data-wl-progress></p>' +
-        '<h3 class="font-headline-sm text-headline-sm text-primary mb-6" data-wl-contact-title>Where should we reach you?</h3>' +
-        '<label class="block mb-6"><span class="font-label-caps text-label-caps uppercase text-secondary">Full name</span>' +
+        '<div class="mb-6" data-wl-roles>' +
+          '<span class="font-label-caps text-label-caps uppercase text-secondary block mb-2">I am a</span>' +
+          '<div class="grid grid-cols-2 gap-3">' +
+            '<button type="button" class="wl-choice btn-secondary py-3" data-role="patient" aria-pressed="false">Patient</button>' +
+            '<button type="button" class="wl-choice btn-secondary py-3" data-role="practitioner" aria-pressed="false">Practitioner</button>' +
+          '</div>' +
+        '</div>' +
+
+        '<label class="block mb-5"><span class="font-label-caps text-label-caps uppercase text-secondary">Full name</span>' +
           '<input class="wl-input" name="full_name" type="text" autocomplete="name" placeholder="Jane Doe" required></label>' +
-        '<label class="block mb-2"><span class="font-label-caps text-label-caps uppercase text-secondary">Email</span>' +
-          '<input class="wl-input" name="email" type="email" autocomplete="email" placeholder="jane@example.com" required></label>' +
-        '<p class="wl-error hidden mb-2" data-wl-error></p>' +
-        '<div class="flex gap-3 mt-8"><button type="button" class="btn-secondary px-5 py-3" data-wl-back>Back</button><button type="button" class="btn-primary flex-1 py-3" data-wl-next>Continue</button></div>' +
-      '</div>' +
 
-      // Step 3 — location & details
-      '<div class="wl-step hidden" data-step="3">' +
-        '<p class="font-label-caps text-label-caps text-secondary mb-2 uppercase tracking-widest" data-wl-progress></p>' +
-        '<h3 class="font-headline-sm text-headline-sm text-primary mb-6">Almost done</h3>' +
-        '<div class="grid grid-cols-3 gap-4 mb-6">' +
-          '<label class="block col-span-2"><span class="font-label-caps text-label-caps uppercase text-secondary">City</span>' +
-            '<input class="wl-input" name="city" type="text" autocomplete="address-level2" placeholder="Austin" required></label>' +
-          '<label class="block"><span class="font-label-caps text-label-caps uppercase text-secondary">State</span>' +
-            '<input class="wl-input" name="state" type="text" autocomplete="address-level1" placeholder="TX" maxlength="20" required></label>' +
-        '</div>' +
+        '<label class="block mb-5"><span class="font-label-caps text-label-caps uppercase text-secondary">Email</span>' +
+          '<input class="wl-input" name="email" type="email" autocomplete="email" placeholder="jane@example.com" required></label>' +
+
+        '<label class="block mb-5"><span class="font-label-caps text-label-caps uppercase text-secondary">Mobile</span>' +
+          '<input class="wl-input" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-0123" required></label>' +
+
+        '<label class="block mb-5"><span class="font-label-caps text-label-caps uppercase text-secondary">ZIP code</span>' +
+          '<input class="wl-input" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="78704" maxlength="10" pattern="[0-9]{5}(-[0-9]{4})?" required></label>' +
+
         '<div data-wl-practitioner class="hidden">' +
-          '<label class="block mb-6"><span class="font-label-caps text-label-caps uppercase text-secondary">Practice name <span class="normal-case tracking-normal font-normal">(optional)</span></span>' +
+          '<label class="block mb-5"><span class="font-label-caps text-label-caps uppercase text-secondary">Practice name <span class="normal-case tracking-normal font-normal">(optional)</span></span>' +
             '<input class="wl-input" name="practice_name" type="text" autocomplete="organization"></label>' +
-          '<label class="flex items-start gap-3 mb-6 text-[0.9rem] text-on-surface-variant cursor-pointer">' +
-            '<input type="checkbox" name="testing_practice" value="yes" class="mt-1 rounded-sm border-primary/30 text-primary focus:ring-0">' +
-            '<span>I\'d like to be a <b class="text-primary">testing practice</b> and help shape how Reblooma is priced.</span></label>' +
+          '<label class="flex items-start gap-3 mb-5 text-[0.78rem] leading-snug text-on-surface-variant cursor-pointer">' +
+            '<input type="checkbox" name="testing_practice" value="yes" class="mt-0.5 rounded-sm border-primary/30 text-primary focus:ring-0">' +
+            '<span>I\'d like to be a <b class="text-primary">pilot practice</b> &mdash; first access to FSA/HSA patients, and the repeat bookings that follow.</span></label>' +
         '</div>' +
-        '<label class="block mb-2"><span class="font-label-caps text-label-caps uppercase text-secondary">Mobile <span class="normal-case tracking-normal font-normal">(optional)</span></span>' +
-          '<input class="wl-input" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-0123"></label>' +
-        '<label class="flex items-start gap-3 mt-3 mb-2 text-[0.78rem] leading-snug text-on-surface-variant cursor-pointer">' +
+
+        '<label class="flex items-start gap-3 mb-4 text-[0.78rem] leading-snug text-on-surface-variant cursor-pointer">' +
           '<input type="checkbox" name="sms_consent" value="yes" class="mt-0.5 rounded-sm border-primary/30 text-primary focus:ring-0">' +
           '<span>Text me launch updates. Msg &amp; data rates may apply; reply STOP to opt out.</span></label>' +
+
         '<p class="wl-error hidden mb-2" data-wl-error></p>' +
-        '<div class="flex gap-3 mt-8"><button type="button" class="btn-secondary px-5 py-3" data-wl-back>Back</button><button type="submit" class="btn-primary flex-1 py-3" data-wl-submit>Join the waitlist</button></div>' +
+        '<button type="submit" class="btn-primary w-full py-3 mt-2" data-wl-submit>Join the waitlist</button>' +
         '<p class="text-[0.72rem] text-on-surface-variant/70 mt-4">We\'ll only contact you about Reblooma. Unsubscribe anytime.</p>' +
       '</div>' +
 
@@ -129,28 +120,19 @@ window.REBLOOMA = Object.assign({
       var choice = e.target.closest('[data-role]');
       if (choice) {
         setRole(choice.getAttribute('data-role'));
-        // A practitioner who backed out of the consultation flow joins the waitlist instead.
+        // A practitioner who switched roles mid-flow joins the waitlist rather than a consultation.
         if (state.role !== 'patient') state.consult = false;
         $('[data-wl-submit]').textContent = submitLabel();
-        $('[data-wl-contact-title]').textContent = state.consult ? 'Start your consultation' : 'Where should we reach you?';
-        return showStep(2);
       }
-      if (e.target.closest('[data-wl-back]')) {
-        if (state.step === 3) return showStep(2);
-        state.presetRole = null; // let them change who they are
-        return showStep(1);
-      }
-      if (e.target.closest('[data-wl-next]')) { if (validateStep(2)) showStep(3); }
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
     });
     form.addEventListener('submit', onSubmit);
-    // The submit button lives on step 3 and is hidden on step 2, so Enter wouldn't submit there.
     form.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'checkbox') {
         e.preventDefault();
-        if (state.step === 2) { if (validateStep(2)) showStep(3); } else if (state.step === 3) { form.requestSubmit(); }
+        form.requestSubmit();
       }
     });
   }
@@ -164,19 +146,23 @@ window.REBLOOMA = Object.assign({
   function showStep(step) {
     state.step = step;
     $$('.wl-step').forEach(function (el) { el.classList.toggle('hidden', el.getAttribute('data-step') !== String(step)); });
-    var total = state.presetRole ? 2 : 3;
-    var n = state.presetRole ? step - 1 : step;
-    $$('[data-wl-progress]').forEach(function (p) { p.textContent = 'Step ' + n + ' of ' + total; });
-    var first = $('.wl-step[data-step="' + step + '"] input:not([type=hidden]):not(.hidden), .wl-step[data-step="' + step + '"] button');
-    if (first) setTimeout(function () { first.focus(); }, 30);
   }
 
-  function validateStep(step) {
-    var fields = $$('.wl-step[data-step="' + step + '"] input[required]');
-    var bad = fields.filter(function (f) { return !f.value.trim() || !f.checkValidity(); });
-    var err = $('.wl-step[data-step="' + step + '"] [data-wl-error]');
+  function validate() {
+    var err = $('[data-wl-error]');
+    if (!state.role) {
+      err.textContent = 'Please tell us whether you\'re a patient or a practitioner.';
+      err.classList.remove('hidden');
+      return false;
+    }
+    var visible = $$('.wl-step[data-step="form"] input[required]').filter(function (f) {
+      return f.offsetParent !== null;
+    });
+    var bad = visible.filter(function (f) { return !f.value.trim() || !f.checkValidity(); });
     if (bad.length) {
-      err.textContent = bad[0].type === 'email' && bad[0].value ? 'That email doesn\'t look quite right.' : 'Please fill in the highlighted fields.';
+      err.textContent = bad[0].type === 'email' && bad[0].value ? 'That email doesn\'t look quite right.'
+        : bad[0].name === 'zip' && bad[0].value ? 'Please enter a 5-digit ZIP code.'
+        : 'Please fill in the highlighted fields.';
       err.classList.remove('hidden');
       bad[0].focus();
       return false;
@@ -189,33 +175,27 @@ window.REBLOOMA = Object.assign({
     ensureModal();
     form.reset();
     state = {
-      step: 1, role: null, presetRole: null, cta: opts.cta || '',
+      step: 'form', role: null, cta: opts.cta || '',
       testing: opts.role === 'testing',
       consult: opts.role === 'consult'
     };
-    $$('[data-wl-error]').forEach(function (e) { e.classList.add('hidden'); });
+    $('[data-wl-error]').classList.add('hidden');
     $('[data-wl-testmode]').classList.add('hidden');
     $('[data-wl-submit]').disabled = false;
-    $('[data-wl-submit]').textContent = submitLabel();
-    $('[data-wl-contact-title]').textContent = state.consult ? 'Start your consultation' : 'Where should we reach you?';
     $('[data-wl-close].btn-primary').classList.remove('hidden');
     $('[data-wl-consult-link]').classList.add('hidden');
+    $('[data-wl-title]').textContent = state.consult ? 'Start your consultation' : 'Join the Reblooma waitlist';
 
-    var role = opts.role === 'testing' || opts.role === 'consult'
-      ? (state.consult ? 'patient' : 'practitioner')
-      : opts.role;
-    if (role === 'patient' || role === 'practitioner') {
-      state.presetRole = role;
-      setRole(role);
-      if (state.testing) form.elements.testing_practice.checked = true;
-      showStep(2);
-    } else {
-      setRole(null);
-      showStep(1);
-    }
+    var role = opts.role === 'testing' ? 'practitioner' : (opts.role === 'consult' ? 'patient' : opts.role);
+    setRole(role === 'patient' || role === 'practitioner' ? role : null);
+    if (state.testing) form.elements.testing_practice.checked = true;
+    $('[data-wl-submit]').textContent = submitLabel();
+    showStep('form');
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.documentElement.style.overflow = 'hidden';
+    setTimeout(function () { form.elements.full_name.focus(); }, 30);
   }
 
   function submitLabel() { return state.consult ? 'Continue to consultation' : 'Join the waitlist'; }
@@ -229,7 +209,7 @@ window.REBLOOMA = Object.assign({
 
   function onSubmit(e) {
     e.preventDefault();
-    if (state.step !== 3 || !validateStep(3)) return;
+    if (state.step !== 'form' || !validate()) return;
     var f = form.elements;
     if (f.company_website.value) return showStep('done'); // bot
 
@@ -239,7 +219,7 @@ window.REBLOOMA = Object.assign({
     var tags = ['waitlist', 'role-' + role];
     if (state.consult) tags.push('consultation-started');
     if (testing) tags.push('testing-practice-interest');
-    if (f.sms_consent.checked && f.phone.value.trim()) tags.push('sms-opt-in');
+    if (f.sms_consent.checked) tags.push('sms-opt-in');
 
     var payload = Object.assign({
       first_name: name[0] || '',
@@ -247,18 +227,20 @@ window.REBLOOMA = Object.assign({
       full_name: f.full_name.value.trim(),
       email: f.email.value.trim(),
       phone: f.phone.value.trim(),
-      city: f.city.value.trim(),
-      state: f.state.value.trim(),
+      zip: f.zip.value.trim(),
+      postal_code: f.zip.value.trim(),
       role: role,
       practice_name: role === 'practitioner' ? f.practice_name.value.trim() : '',
       testing_practice: testing ? 'yes' : 'no',
-      sms_consent: f.sms_consent.checked && f.phone.value.trim() ? 'yes' : 'no',
+      sms_consent: f.sms_consent.checked ? 'yes' : 'no',
       tags: tags.join(','),
       source_page: location.pathname,
       cta: state.cta,
       intent: state.consult ? 'consultation' : 'waitlist',
       submitted_at: new Date().toISOString()
-    }, readJSON('rb_attr') || {});
+    }, { ref: '', partner: '', utm_source: '', utm_medium: '', utm_campaign: '', utm_term: '',
+          utm_content: '', gclid: '', fbclid: '', landing_page: '', referrer: '' },
+       readJSON('rb_attr') || {});
 
     var btn = $('[data-wl-submit]');
     btn.disabled = true;
@@ -278,7 +260,7 @@ window.REBLOOMA = Object.assign({
     }).catch(function () {
       // Don't block someone from their consultation just because the lead didn't save.
       if (state.consult) return goToConsultation(true);
-      var err = $('.wl-step[data-step="3"] [data-wl-error]');
+      var err = $('[data-wl-error]');
       err.textContent = 'Something went wrong. Please try again, or email hello@reblooma.com.';
       err.classList.remove('hidden');
     }).then(function () {
@@ -302,16 +284,20 @@ window.REBLOOMA = Object.assign({
     if (autoRedirect) state.redirectTimer = setTimeout(function () { location.assign(url); }, 2500);
   }
 
-  // Sent as form-encoded with no-cors so the browser doesn't need a CORS preflight
-  // from GoHighLevel. The response is opaque, so a network failure is the only error we see.
+  // Form-encoded, so the browser sends it without a CORS preflight. GoHighLevel
+  // allows the cross-origin read, so a non-2xx response surfaces as a real error.
   function send(payload) {
     var url = window.REBLOOMA.waitlistWebhook;
     if (!url) {
       console.warn('[Reblooma] waitlistWebhook is not set in assets/site.js — test mode, nothing saved.', payload);
       return Promise.resolve(false);
     }
-    return fetch(url, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(payload) })
-      .then(function () { return true; });
+    return fetch(url, { method: 'POST', body: new URLSearchParams(payload) })
+      .then(function (r) {
+        // An opaque response (type 'opaque') can't be inspected; treat it as sent.
+        if (r.type === 'opaque' || r.ok) return true;
+        throw new Error('Waitlist webhook returned ' + r.status);
+      });
   }
 
   // Any element with data-waitlist opens the modal.

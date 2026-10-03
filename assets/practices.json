@@ -1,0 +1,42 @@
+{
+  "updated": "2026-09-22",
+  "practices": [],
+
+  "_note": "Empty until practices are onboarded. Two ways to fill this: (1) export from the internal practice database into this file on each deploy, or (2) set window.REBLOOMA.directoryApi in assets/site.js to a live endpoint that returns the same shape, which then takes priority over this file.",
+
+  "_schema": {
+    "id": "string, stable id from the internal database",
+    "name": "string, practice name as patients would see it",
+    "setting": "one of: clinic | day spa | resort | wellness studio | mobile",
+    "address": "string, street address (omit for mobile-only practices)",
+    "city": "string",
+    "state": "string, two-letter code",
+    "zip": "string",
+    "lat": "number, decimal degrees (optional; enables distance sorting)",
+    "lng": "number, decimal degrees (optional)",
+    "serves": "string, e.g. 'Travels within 20 miles of Austin' (mobile practices)",
+    "phone": "string (optional)",
+    "website": "string, absolute URL (optional)",
+    "booking_url": "string, absolute URL for online booking (optional)",
+    "accepting": "boolean, whether they're taking new Reblooma patients",
+    "modalities": ["string, e.g. deep tissue, prenatal, myofascial"],
+    "languages": ["string, optional"]
+  },
+
+  "_example": {
+    "id": "prac_0001",
+    "name": "Cedar & Stone Massage",
+    "setting": "clinic",
+    "address": "1200 S Lamar Blvd, Suite 4",
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78704",
+    "lat": 30.2516,
+    "lng": -97.7629,
+    "phone": "(512) 555-0142",
+    "website": "https://example.com",
+    "booking_url": "https://example.com/book",
+    "accepting": true,
+    "modalities": ["Deep tissue", "Prenatal", "Myofascial release"]
+  }
+}
