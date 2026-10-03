@@ -18,7 +18,7 @@ window.REBLOOMA_ANALYTICS = Object.assign({
   ga4Id: '',
   metaPixelId: '',
   redditId: '',
-  clarityId: ''
+  clarityId: 'ys3dc2u8io'
 }, window.REBLOOMA_ANALYTICS || {});
 
 (function () {
