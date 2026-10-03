@@ -15,7 +15,7 @@
  */
 window.REBLOOMA_ANALYTICS = Object.assign({
   gtmId: '',
-  ga4Id: '',
+  ga4Id: 'G-BMSJ102576',
   metaPixelId: '',
   redditId: '',
   clarityId: 'ys3dc2u8io'
