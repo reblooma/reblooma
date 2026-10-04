@@ -90,7 +90,7 @@ window.REBLOOMA = Object.assign({
 
         '<p class="wl-error hidden mb-2" data-wl-error></p>' +
         '<button type="submit" class="btn-primary w-full py-3 mt-2" data-wl-submit>Join the waitlist</button>' +
-        '<p class="text-[0.72rem] text-on-surface-variant/70 mt-4">We\'ll only contact you about Reblooma. Unsubscribe anytime.</p>' +
+        '<p class="text-[0.72rem] text-on-surface-variant/70 mt-4">We\'ll only contact you about Reblooma. Unsubscribe anytime. <a class="underline" href="privacy.html">Privacy</a>.</p>' +
       '</div>' +
 
       // Done
